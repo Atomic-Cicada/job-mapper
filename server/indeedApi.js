@@ -1,13 +1,7 @@
+// let utils = require('./utils.js');
+
 // placeholder publisher id, will be moved to config file
 let PUBLISHER_ID = '';
-
-let headers = {
-  'access-control-allow-origin': '*',
-  'access-control-allow-methods': 'GET, POST, PUT, DELETE, OPTIONS',
-  'access-control-allow-headers': 'content-type, accept',
-  'access-control-max-age': 10, // Seconds.
-  'Content-Type': 'application/json'
-};
 
 let publisherVar = PUBLISHER_ID;
 let versionVar = '2';
@@ -18,6 +12,8 @@ let latLongVar = '1';
 let coVar = 'us';
 let userIpVar = '1.2.3.4';
 let userAgentVar = 'Mozilla/%2F4.0%28Firefox%29';
+let limitVar = '30';
+let startVar = 25;
 
 let queryBuilder = function() {
   /////////////////////////////////
@@ -45,6 +41,10 @@ let queryBuilder = function() {
   let userIp = '&userip=' + userIpVar;
   // useragent The User-Agent (browser) of the end-user to whom the job results will be displayed. This can be obtained from the "User-Agent" HTTP request header from the end-user. This field is required.
   let userAgent = '&useragent=' + userAgentVar;
+  // limit Maximum number of results returned per query. Default is 10
+  let limit = '&limit=' + limitVar;
+  // start Start results at this result number, beginning with 0. Default is 0.
+  let start = '&start=' + startVar;
 
 
   // --------------------- //
@@ -53,8 +53,6 @@ let queryBuilder = function() {
   /*
   // callback  Callback. The name of a javascript function to use as a callback to which the results of the search are passed. This only applies when format=json. For security reasons, the callback name is restricted letters, numbers, and the underscore character.
   let callback = '&callback=' + '';
-  // limit Maximum number of results returned per query. Default is 10
-  let limit = '&limit=' + '';
   // radius  Distance from search location ("as the crow flies"). Default is 25.
   let radius = '&radius=' + '25';
   // sort  Sort by relevance or date. Default is relevance.
@@ -63,8 +61,6 @@ let queryBuilder = function() {
   let siteType = '&st=' + '';
   // jt  Job type. Allowed values: "fulltime", "parttime", "contract", "internship", "temporary".
   let jobType = '&jt=' + '';
-  // start Start results at this result number, beginning with 0. Default is 0.
-  let start = '&start=' + '';
   // fromage Number of days back to search.
   let fromAge = '&fromage=' + '';
   // highlight Setting this value to 1 will bold terms in the snippet that are also present in q. Default is 0.
@@ -76,17 +72,18 @@ let queryBuilder = function() {
   */
 
   // Built out URL from parameters
-  let params = publisher + version + format + query + loc + latlong + co + userIp + userAgent;
+  let params = publisher + version + format + query + loc + latlong + co + userIp + userAgent + limit + start;
   let builtUrl = 'http://api.indeed.com/ads/apisearch?' + params;
   return builtUrl;
 };
 
 let url = queryBuilder();
+console.log(url, 'URL');
 
 $.ajax({
   url: url,
   type: 'GET',
   dataType: 'jsonp',
-  headers: headers,
-  success: function(data) { console.log(data.results); }
+  // headers: window.headers,
+  success: function(data) { console.log(data.results, 'RESULTS'); }
 });
