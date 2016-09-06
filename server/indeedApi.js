@@ -1,7 +1,7 @@
 // let utils = require('./utils.js');
 
 // placeholder publisher id, will be moved to config file
-let PUBLISHER_ID = '4974722777681527';
+let PUBLISHER_ID = '';
 
 let publisherVar = PUBLISHER_ID;
 let versionVar = '2';
