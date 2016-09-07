@@ -61,6 +61,12 @@
 	
 	var _MapsComponent2 = _interopRequireDefault(_MapsComponent);
 	
+	var _SearchBar = __webpack_require__(/*! ./SearchBar.jsx */ 201);
+	
+	var _SearchBar2 = _interopRequireDefault(_SearchBar);
+	
+	var _main_app_style = __webpack_require__(/*! ./main_app_style.js */ 202);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -81,7 +87,12 @@
 	  _createClass(App, [{
 	    key: 'render',
 	    value: function render() {
-	      return _react2.default.createElement(_MapsComponent2.default, null);
+	      return _react2.default.createElement(
+	        'div',
+	        { style: _main_app_style.mainAppStyle },
+	        _react2.default.createElement(_MapsComponent2.default, null),
+	        _react2.default.createElement(_SearchBar2.default, null)
+	      );
 	    }
 	  }]);
 	
@@ -25317,6 +25328,110 @@
 	}
 	
 	module.exports = shallowCompare;
+
+/***/ },
+/* 201 */
+/*!******************************!*\
+  !*** ./client/SearchBar.jsx ***!
+  \******************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var SearchBar = function (_Component) {
+	  _inherits(SearchBar, _Component);
+	
+	  function SearchBar(props) {
+	    _classCallCheck(this, SearchBar);
+	
+	    return _possibleConstructorReturn(this, (SearchBar.__proto__ || Object.getPrototypeOf(SearchBar)).call(this, props));
+	  }
+	
+	  _createClass(SearchBar, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { id: 'SearchBar' },
+	        _react2.default.createElement(
+	          'form',
+	          null,
+	          _react2.default.createElement(
+	            'div',
+	            { 'class': 'searchLabel' },
+	            'Job Title:',
+	            _react2.default.createElement('input', { type: 'text', name: 'job' })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { 'class': 'searchLabel' },
+	            'City:',
+	            _react2.default.createElement('input', { type: 'text', name: 'city' })
+	          ),
+	          _react2.default.createElement('input', { type: 'submit', name: 'submit' })
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return SearchBar;
+	}(_react.Component);
+	
+	SearchBar.defaultProps = {};
+	exports.default = SearchBar;
+
+/***/ },
+/* 202 */
+/*!**********************************!*\
+  !*** ./client/main_app_style.js ***!
+  \**********************************/
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var K_WIDTH = 1000;
+	var K_HEIGHT = 900;
+	
+	var mainAppStyle = {
+	  // initially any map object has left top corner at lat lng coordinates
+	  // it's on you to set object origin to 0,0 coordinates
+	  position: 'absolute',
+	  width: K_WIDTH,
+	  height: K_HEIGHT,
+	  left: 0,
+	  top: 0,
+	
+	  //border: '5px solid #f44336',
+	  //borderRadius: K_HEIGHT,
+	  backgroundColor: 'black',
+	  textAlign: 'center',
+	  fontSize: 16,
+	  fontWeight: 'bold',
+	  padding: 4
+	};
+	
+	exports.mainAppStyle = mainAppStyle;
 
 /***/ }
 /******/ ]);
