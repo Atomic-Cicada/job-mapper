@@ -1,9 +1,7 @@
 import React, {PropTypes, Component} from 'react';
 
 export default class SearchBar extends Component {
-  // static defaultProps = {
 
-  // };
 
   constructor(props) {
     super(props);
@@ -19,6 +17,7 @@ export default class SearchBar extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    console.log('handle being called')
     $.ajax({
       url: 'http://localhost:3000/indeed',
       type: 'POST',
@@ -31,17 +30,17 @@ export default class SearchBar extends Component {
 
   handleJobSearch(e) {
     this.setState({currentJob: e.target.value});
-    //console.log(this)
+    console.log(this)
   }
   handleCitySearch(e) {
     this.setState({currentCity: e.target.value});
-    //console.log(this)
+    console.log(this)
   }
 
   render() {
     return (
       <div id='SearchBar'>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit.bind(this)}>
           <div className='searchLabel'>Job Title:<input type="text" name="job" value={this.state.currentJob} onChange={this.handleJobSearch}/></div>
           <div className='searchLabel'>City:<input type="text" name="city" value={this.state.currentCity} onChange={this.handleCitySearch} /></div>
           <input type="submit" name="submit"/>
