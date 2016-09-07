@@ -25375,13 +25375,51 @@
 	var SearchBar = function (_Component) {
 	  _inherits(SearchBar, _Component);
 	
+	  // static defaultProps = {
+	
+	  // };
+	
 	  function SearchBar(props) {
 	    _classCallCheck(this, SearchBar);
 	
-	    return _possibleConstructorReturn(this, (SearchBar.__proto__ || Object.getPrototypeOf(SearchBar)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (SearchBar.__proto__ || Object.getPrototypeOf(SearchBar)).call(this, props));
+	
+	    _this.state = {
+	      currentJob: '',
+	      currentCity: ''
+	    };
+	
+	    _this.handleJobSearch = _this.handleJobSearch.bind(_this);
+	    _this.handleCitySearch = _this.handleCitySearch.bind(_this);
+	    _this.handleSubmit = _this.handleSubmit.bind(_this);
+	    return _this;
 	  }
 	
 	  _createClass(SearchBar, [{
+	    key: 'handleSubmit',
+	    value: function handleSubmit(e) {
+	      e.preventDefault();
+	      $.ajax({
+	        url: 'http://localhost:3000/indeed',
+	        dataType: 'json',
+	        data: '{job: this.state.currentJob, city: this.state.currentCity}',
+	        success: console.log('ok sent')
+	
+	      });
+	    }
+	  }, {
+	    key: 'handleJobSearch',
+	    value: function handleJobSearch(e) {
+	      this.setState({ currentJob: e.target.value });
+	      console.log(this);
+	    }
+	  }, {
+	    key: 'handleCitySearch',
+	    value: function handleCitySearch(e) {
+	      this.setState({ currentCity: e.target.value });
+	      console.log(this);
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -25389,18 +25427,18 @@
 	        { id: 'SearchBar' },
 	        _react2.default.createElement(
 	          'form',
-	          null,
+	          { onSubmit: this.handleSubmit },
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'searchLabel' },
 	            'Job Title:',
-	            _react2.default.createElement('input', { type: 'text', name: 'job' })
+	            _react2.default.createElement('input', { type: 'text', name: 'job', value: this.state.currentJob, onChange: this.handleJobSearch })
 	          ),
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'searchLabel' },
 	            'City:',
-	            _react2.default.createElement('input', { type: 'text', name: 'city' })
+	            _react2.default.createElement('input', { type: 'text', name: 'city', value: this.state.currentCity, onChange: this.handleCitySearch })
 	          ),
 	          _react2.default.createElement('input', { type: 'submit', name: 'submit' })
 	        )
