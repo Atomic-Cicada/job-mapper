@@ -2,13 +2,11 @@ import React from 'react';
 import {render} from 'react-dom';
 import MapComponent from './MapsComponent.jsx';
 import SearchBar from './SearchBar.jsx';
-import {greatPlaceStyle} from './my_great_place_styles.js';
-
 
 class App extends React.Component {
   render () {
     return (
-    	<div>
+      <div>
         <SearchBar />
         <div id='mapContainer'><MapComponent /></div>
       </div>
@@ -17,5 +15,3 @@ class App extends React.Component {
 }
 
 render(<App/>, document.getElementById('app'));
-
-//style={greatPlaceStyle}
