@@ -3,6 +3,8 @@ import {render} from 'react-dom';
 import MapComponent from './MapsComponent.jsx';
 import SearchBar from './SearchBar.jsx';
 require('./main.css');
+// import Filter from './FilterBar.jsx';
+
 
 class App extends React.Component {
   render () {

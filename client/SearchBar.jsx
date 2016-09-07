@@ -20,9 +20,9 @@ export default class SearchBar extends Component {
     console.log('handle being called')
     $.ajax({
       url: 'http://localhost:3000/indeed',
-      type: 'POST',
+      type: 'GET',
       dataType: 'json',
-      data: '{job: this.state.currentJob, city: this.state.currentCity}',
+      //data: '{job: this.state.currentJob, city: this.state.currentCity}',
       success: console.log('ok sent')
 
     })
