@@ -65,7 +65,7 @@
 	
 	var _SearchBar2 = _interopRequireDefault(_SearchBar);
 	
-	var _main_app_style = __webpack_require__(/*! ./main_app_style.js */ 202);
+	var _my_great_place_styles = __webpack_require__(/*! ./my_great_place_styles.js */ 198);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -89,9 +89,13 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
-	        { style: _main_app_style.mainAppStyle },
-	        _react2.default.createElement(_MapsComponent2.default, null),
-	        _react2.default.createElement(_SearchBar2.default, null)
+	        null,
+	        _react2.default.createElement(_SearchBar2.default, null),
+	        _react2.default.createElement(
+	          'div',
+	          { id: 'mapContainer' },
+	          _react2.default.createElement(_MapsComponent2.default, null)
+	        )
 	      );
 	    }
 	  }]);
@@ -100,6 +104,8 @@
 	}(_react2.default.Component);
 	
 	(0, _reactDom.render)(_react2.default.createElement(App, null), document.getElementById('app'));
+	
+	//style={greatPlaceStyle}
 
 /***/ },
 /* 1 */
@@ -25279,7 +25285,7 @@
 	  borderRadius: K_HEIGHT,
 	  backgroundColor: 'white',
 	  textAlign: 'center',
-	  color: '#3f51b5',
+	  color: 'blue',
 	  fontSize: 16,
 	  fontWeight: 'bold',
 	  padding: 4
@@ -25359,6 +25365,10 @@
 	var SearchBar = function (_Component) {
 	  _inherits(SearchBar, _Component);
 	
+	  // static defaultProps = {
+	
+	  // };
+	
 	  function SearchBar(props) {
 	    _classCallCheck(this, SearchBar);
 	
@@ -25376,13 +25386,13 @@
 	          null,
 	          _react2.default.createElement(
 	            'div',
-	            { 'class': 'searchLabel' },
+	            { className: 'searchLabel' },
 	            'Job Title:',
 	            _react2.default.createElement('input', { type: 'text', name: 'job' })
 	          ),
 	          _react2.default.createElement(
 	            'div',
-	            { 'class': 'searchLabel' },
+	            { className: 'searchLabel' },
 	            'City:',
 	            _react2.default.createElement('input', { type: 'text', name: 'city' })
 	          ),
@@ -25395,43 +25405,7 @@
 	  return SearchBar;
 	}(_react.Component);
 	
-	SearchBar.defaultProps = {};
 	exports.default = SearchBar;
-
-/***/ },
-/* 202 */
-/*!**********************************!*\
-  !*** ./client/main_app_style.js ***!
-  \**********************************/
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var K_WIDTH = 1000;
-	var K_HEIGHT = 900;
-	
-	var mainAppStyle = {
-	  // initially any map object has left top corner at lat lng coordinates
-	  // it's on you to set object origin to 0,0 coordinates
-	  position: 'absolute',
-	  width: K_WIDTH,
-	  height: K_HEIGHT,
-	  left: 0,
-	  top: 0,
-	
-	  //border: '5px solid #f44336',
-	  //borderRadius: K_HEIGHT,
-	  backgroundColor: 'black',
-	  textAlign: 'center',
-	  fontSize: 16,
-	  fontWeight: 'bold',
-	  padding: 4
-	};
-	
-	exports.mainAppStyle = mainAppStyle;
 
 /***/ }
 /******/ ]);
