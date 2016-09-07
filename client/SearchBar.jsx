@@ -21,6 +21,7 @@ export default class SearchBar extends Component {
     e.preventDefault();
     $.ajax({
       url: 'http://localhost:3000/indeed',
+      type: 'POST',
       dataType: 'json',
       data: '{job: this.state.currentJob, city: this.state.currentCity}',
       success: console.log('ok sent')
@@ -30,11 +31,11 @@ export default class SearchBar extends Component {
 
   handleJobSearch(e) {
     this.setState({currentJob: e.target.value});
-    console.log(this)
+    //console.log(this)
   }
   handleCitySearch(e) {
     this.setState({currentCity: e.target.value});
-    console.log(this)
+    //console.log(this)
   }
 
   render() {
