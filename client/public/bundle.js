@@ -25399,8 +25399,13 @@
 	    key: 'handleSubmit',
 	    value: function handleSubmit(e) {
 	      e.preventDefault();
-	      console.log('currentCity is ', this.state.currentCity);
-	      console.log('currentJob is ', this.state.currentJob);
+	      $.ajax({
+	        url: 'http://localhost:3000/indeed',
+	        dataType: 'json',
+	        data: '{job: this.state.currentJob, city: this.state.currentCity}',
+	        success: console.log('ok sent')
+	
+	      });
 	    }
 	  }, {
 	    key: 'handleJobSearch',
