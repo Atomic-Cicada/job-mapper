@@ -14,7 +14,7 @@ const greatPlaceStyle = {
   borderRadius: K_HEIGHT,
   backgroundColor: 'white',
   textAlign: 'center',
-  color: '#3f51b5',
+  color: 'blue',
   fontSize: 16,
   fontWeight: 'bold',
   padding: 4

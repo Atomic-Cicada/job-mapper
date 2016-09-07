@@ -1,4 +1,28 @@
-#app {
-  height: 500px;
-  width: 500px;
+#mapContainer {
+  height: 650px;
+  width: 900px;
 }
+
+form {
+	height: 130px;
+}
+
+input {
+	height: 25px;
+	width: 150px
+}
+
+.searchLabel {
+  color: blue;
+  width: 150px;
+  margin: 10px;
+  font-size: 30px;
+  display: inline-block;
+}
+
+#searchBar {
+	width: 40px;
+	margin: 10px;
+	display: inline-block;
+}
+
