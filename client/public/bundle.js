@@ -65,8 +65,6 @@
 	
 	var _SearchBar2 = _interopRequireDefault(_SearchBar);
 	
-	var _my_great_place_styles = __webpack_require__(/*! ./my_great_place_styles.js */ 198);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -104,8 +102,6 @@
 	}(_react2.default.Component);
 	
 	(0, _reactDom.render)(_react2.default.createElement(App, null), document.getElementById('app'));
-	
-	//style={greatPlaceStyle}
 
 /***/ },
 /* 1 */
@@ -22004,8 +22000,6 @@
 	  value: true
 	});
 	
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _react = __webpack_require__(/*! react */ 1);
@@ -22016,9 +22010,9 @@
 	
 	var _googleMapReact2 = _interopRequireDefault(_googleMapReact);
 	
-	var _my_great_place = __webpack_require__(/*! ./my_great_place.jsx */ 197);
+	var _Marker = __webpack_require__(/*! ./Marker.jsx */ 197);
 	
-	var _my_great_place2 = _interopRequireDefault(_my_great_place);
+	var _Marker2 = _interopRequireDefault(_Marker);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -22028,7 +22022,6 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	// import shouldPureComponentUpdate from 'react-pure-render/function';
 	var shallowCompare = __webpack_require__(/*! react-addons-shallow-compare */ 199);
 	
 	var SimpleMapPage = function (_Component) {
@@ -22036,9 +22029,6 @@
 	
 	  _createClass(SimpleMapPage, [{
 	    key: 'shouldComponentUpdate',
-	
-	
-	    // shouldComponentUpdate = shouldPureComponentUpdate;
 	    value: function shouldComponentUpdate(nextProps, nextState) {
 	      return shallowCompare(this, nextProps, nextState);
 	    }
@@ -22047,19 +22037,40 @@
 	  function SimpleMapPage(props) {
 	    _classCallCheck(this, SimpleMapPage);
 	
-	    return _possibleConstructorReturn(this, (SimpleMapPage.__proto__ || Object.getPrototypeOf(SimpleMapPage)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (SimpleMapPage.__proto__ || Object.getPrototypeOf(SimpleMapPage)).call(this, props));
+	
+	    _this.state = {
+	      markers: [{ lat: 37.7836966, lng: -122.4089664 }, { lat: 37.7868619, lng: -122.403914 }, { lat: 37.7823802, lng: -122.4052253 }]
+	    };
+	    return _this;
 	  }
 	
 	  _createClass(SimpleMapPage, [{
+	    key: 'setMarkers',
+	    value: function setMarkers(markerArray) {
+	      this.setState({
+	        markers: markerArray
+	      });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var Markers = this.state.markers.map(function (marker, index) {
+	        return _react2.default.createElement(_Marker2.default
+	        // required props
+	        , { key: index,
+	          lat: marker['lat'],
+	          lng: marker['lng']
+	          // any user props
+	          , marker: marker });
+	      });
+	
 	      return _react2.default.createElement(
 	        _googleMapReact2.default,
 	        {
 	          defaultCenter: this.props.center,
 	          defaultZoom: this.props.zoom },
-	        _react2.default.createElement(_my_great_place2.default, { lat: 59.955413, lng: 30.337844, text: 'A' /* Kreyser Avrora */ }),
-	        _react2.default.createElement(_my_great_place2.default, _extends({}, this.props.greatPlaceCoords, { text: 'B' /* road circle */ }))
+	        Markers
 	      );
 	    }
 	  }]);
@@ -22067,10 +22078,13 @@
 	  return SimpleMapPage;
 	}(_react.Component);
 	
+	// <MyGreatPlace {...this.props.greatPlaceCoords} text={'B'} /* road circle */ />
+	// <MyGreatPlace lat={59.955413} lng={30.337844} text={'A'} /* Kreyser Avrora */ />
+	
+	
 	SimpleMapPage.defaultProps = {
-	  center: { lat: 59.938043, lng: 30.337157 },
-	  zoom: 9,
-	  greatPlaceCoords: { lat: 59.724465, lng: 30.080121 }
+	  center: { lat: 37.7749, lng: -122.4194 },
+	  zoom: 12
 	};
 	exports.default = SimpleMapPage;
 
@@ -25190,9 +25204,9 @@
 
 /***/ },
 /* 197 */
-/*!***********************************!*\
-  !*** ./client/my_great_place.jsx ***!
-  \***********************************/
+/*!***************************!*\
+  !*** ./client/Marker.jsx ***!
+  \***************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25207,7 +25221,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _my_great_place_styles = __webpack_require__(/*! ./my_great_place_styles.js */ 198);
+	var _MarkerStyle = __webpack_require__(/*! ./MarkerStyle.js */ 198);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -25217,23 +25231,19 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	// import shouldPureComponentUpdate from 'react-pure-render/function';
 	var shallowCompare = __webpack_require__(/*! react-addons-shallow-compare */ 199);
 	
-	var MyGreatPlace = function (_Component) {
-	  _inherits(MyGreatPlace, _Component);
+	var Marker = function (_Component) {
+	  _inherits(Marker, _Component);
 	
-	  function MyGreatPlace() {
-	    _classCallCheck(this, MyGreatPlace);
+	  function Marker() {
+	    _classCallCheck(this, Marker);
 	
-	    return _possibleConstructorReturn(this, (MyGreatPlace.__proto__ || Object.getPrototypeOf(MyGreatPlace)).apply(this, arguments));
+	    return _possibleConstructorReturn(this, (Marker.__proto__ || Object.getPrototypeOf(Marker)).apply(this, arguments));
 	  }
 	
-	  _createClass(MyGreatPlace, [{
+	  _createClass(Marker, [{
 	    key: 'shouldComponentUpdate',
-	
-	
-	    // shouldComponentUpdate = shouldPureComponentUpdate;
 	    value: function shouldComponentUpdate(nextProps, nextState) {
 	      return shallowCompare(this, nextProps, nextState);
 	    }
@@ -25242,26 +25252,26 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
-	        { style: _my_great_place_styles.greatPlaceStyle },
+	        { style: _MarkerStyle.markerStyle },
 	        this.props.text
 	      );
 	    }
 	  }]);
 	
-	  return MyGreatPlace;
+	  return Marker;
 	}(_react.Component);
 	
-	MyGreatPlace.propTypes = {
+	Marker.propTypes = {
 	  text: _react.PropTypes.string
 	};
-	MyGreatPlace.defaultProps = {};
-	exports.default = MyGreatPlace;
+	Marker.defaultProps = {};
+	exports.default = Marker;
 
 /***/ },
 /* 198 */
-/*!*****************************************!*\
-  !*** ./client/my_great_place_styles.js ***!
-  \*****************************************/
+/*!*******************************!*\
+  !*** ./client/MarkerStyle.js ***!
+  \*******************************/
 /***/ function(module, exports) {
 
 	'use strict';
@@ -25269,10 +25279,10 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	var K_WIDTH = 40;
-	var K_HEIGHT = 40;
+	var K_WIDTH = 20;
+	var K_HEIGHT = 20;
 	
-	var greatPlaceStyle = {
+	var markerStyle = {
 	  // initially any map object has left top corner at lat lng coordinates
 	  // it's on you to set object origin to 0,0 coordinates
 	  position: 'absolute',
@@ -25291,7 +25301,7 @@
 	  padding: 4
 	};
 	
-	exports.greatPlaceStyle = greatPlaceStyle;
+	exports.markerStyle = markerStyle;
 
 /***/ },
 /* 199 */
@@ -25364,10 +25374,6 @@
 	
 	var SearchBar = function (_Component) {
 	  _inherits(SearchBar, _Component);
-	
-	  // static defaultProps = {
-	
-	  // };
 	
 	  function SearchBar(props) {
 	    _classCallCheck(this, SearchBar);
