@@ -11,12 +11,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      markers: [
-        {lat: 37.7836966, lng: -122.4089664},
-        {lat : 37.7868619, lng : -122.403914},
-        {lat : 37.7823802, lng : -122.4052253}
-      ]
-    }
+      markers: []
+    };
     this.setMarkers = this.setMarkers.bind(this);
   }
 

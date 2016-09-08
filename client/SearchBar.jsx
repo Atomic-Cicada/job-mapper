@@ -5,7 +5,7 @@ export default class SearchBar extends Component {
 
   constructor(props) {
     super(props);
-    this.state= {
+    this.state = {
       currentJob: '',
       currentCity: ''
     };
@@ -20,20 +20,18 @@ export default class SearchBar extends Component {
     $.ajax({
       url: 'http://localhost:3000/indeed',
       type: 'POST',
-      data: JSON.stringify([{ job: this.state.currentJob, city: this.state.currentCity }]),
+      data: JSON.stringify({ job: this.state.currentJob, city: this.state.currentCity }),
       dataType: 'json',
-      contentType: "application/json; charset=utf-8",
+      contentType: 'application/json; charset=utf-8',
       success: function(data) {
-        console.log(data);
-      //   var newMarkers = [];
-      //   data.forEach(function(job) {
-      //     var marker = {lat: job.city.lat, lng: job.city.long};
-      //     newMarkers.push(marker);
-      //   })
-      //   this.props.setMarkers(newMarkers);
-      // }.bind(this)
-      }
-    })
+        var markers = [];
+        data.forEach(function(job) {
+          var marker = {lat: job.city.lat, lng: job.city.long};
+          markers.push(marker);
+        });
+        this.props.setMarkers(markers);
+      }.bind(this)
+    });
   }
 
   handleJobSearch(e) {
