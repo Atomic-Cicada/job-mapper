@@ -18,14 +18,14 @@ export default class SearchBar extends Component {
   handleSubmit(e) {
     e.preventDefault();
     console.log('handle being called')
-    $.ajax({
-      url: 'http://localhost:3000/indeed',
-      type: 'GET',
-      dataType: 'json',
-      //data: '{job: this.state.currentJob, city: this.state.currentCity}',
-      success: console.log('ok sent')
+    // $.ajax({
+    //   url: 'http://localhost:3000/indeed',
+    //   type: 'GET',
+    //   dataType: 'json',
+    //   //data: '{job: this.state.currentJob, city: this.state.currentCity}',
+    //   success: this.props.setMarkers()
 
-    })
+    // })
   }
 
   handleJobSearch(e) {

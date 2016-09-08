@@ -1,3 +1,4 @@
+'use strict'
 let indeed = require('./indeedApi.js');
 let places = require('./placesApi.js');
 let Promise = require('bluebird');
