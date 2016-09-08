@@ -1,6 +1,6 @@
-var mongoose = require('mongoose');
+let mongoose = require('mongoose');
 
-var jobSchema = mongoose.Schema({
+let jobSchema = mongoose.Schema({
   jobtitle: {type: String},
   company: {type: String},
   city: {type: String},
@@ -14,6 +14,6 @@ var jobSchema = mongoose.Schema({
   results: {type: Object}
 });
  
-var Job = mongoose.model('Job', jobSchema);
+let Job = mongoose.model('Job', jobSchema);
 
 module.exports = Job;

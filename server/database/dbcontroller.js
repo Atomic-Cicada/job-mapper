@@ -1,7 +1,7 @@
 'use strict';
 
-var Job = require('./schema.js');
-var controller = require('../controller.js');
+let Job = require('./schema.js');
+let controller = require('../controller.js');
 
 module.exports = {
   retrieveAll: (req, res) => {
