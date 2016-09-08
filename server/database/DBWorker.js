@@ -21,7 +21,7 @@ whilst(() => cont, (callback) => {
   let query = indeed.queryBuilder(job, city, limit.toString(), startNumber.toString());
   console.log(query);
   controller.indeedApiCall(query).then((result) => {
-    if (!result) {
+    if (startNumber > 1000) {
       cont = false;
     } else {
       result.forEach((item) => {

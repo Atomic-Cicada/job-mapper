@@ -19,6 +19,7 @@ module.exports = {
     });
   },
   retrieveAll: (req, res) => {
+    console.log('in rA');
     Marker.find().then((results) => {
       res.status(200).send(JSON.stringify(results));
     });

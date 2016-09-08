@@ -11,10 +11,11 @@ var dbController = require('./database/dbcontroller');
 module.exports = function(app, express) {
 
   app.post('/indeed', function(req, res) {
-    let query = indeed.queryBuilder(job, city, '0');
-    controller.indeedApiCall(query, (results) => {
-      res.send(result);
-    });
+    // let query = indeed.queryBuilder(job, city, '0');
+    dbController.retrieveAll(req, res);
+    // controller.indeedApiCall(query, (results) => {
+    //   res.send(result);
+    // });
   });
 
   app.get('/', function(req, res) {
