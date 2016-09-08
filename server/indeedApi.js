@@ -1,19 +1,12 @@
 'use strict';
 
-var request = require('request');
-var config = require('./config.js');
+let request = require('request');
+let config = require('./config.js');
+let rp = require('request-promise');
 
 
 module.exports = {
-  indeedApiCall: function(url, cb) {
-    request(url, function(error, response, body) {
-      if (!error && response.statusCode === 200) {
-        cb(JSON.parse(body));
-      }
-    });
-  },
-
-  queryBuilder: function(queryVar, locationVar, startVar) {
+  queryBuilder: (queryVar, locationVar, limitVar, startVar) => {
     /////////////////////////////////
     // Indeed API request parameters
     /////////////////////////////////
@@ -40,7 +33,7 @@ module.exports = {
     // useragent The User-Agent (browser) of the end-user to whom the job results will be displayed. This can be obtained from the "User-Agent" HTTP request header from the end-user. This field is required.
     let userAgent = '&useragent=' + 'Mozilla/%2F4.0%28Firefox%29';
     // limit Maximum number of results returned per query. Default is 10
-    let limit = '&limit=' + '25';
+    let limit = '&limit=' + limitVar;
     // start Start results at this result number, beginning with 0. Default is 0.
     let start = '&start=' + startVar;
 

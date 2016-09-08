@@ -1,17 +1,17 @@
 'use strict';
 
-var request = require('request');
-var config = require('./config.js');
-var rp = require('request-promise');
+let request = require('request');
+let config = require('./config.js');
+let rp = require('request-promise');
 
 let API_KEY = config.GOOGLE_PLACES_API_KEY;
 
 module.exports = {
-  googlePlacesApiCall: function(obj) {
+  googlePlacesApiCall: (obj) => {
     let url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=' + obj.city.lat + ',' + obj.city.long + '&radius=5000&name=' + obj.company + '&key=' + API_KEY;
 
-    return rp(url).then(function(item) {
-      var data = JSON.parse(item);
+    return rp(url).then((item) => {
+      let data = JSON.parse(item);
       if (data.results[0] !== undefined) {
         obj.address = data.results[0].vicinity;
         obj.city.lat = data.results[0].geometry.location.lat;
