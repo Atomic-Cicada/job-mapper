@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname + '/../client/public')));
 
 require('./routes.js')(app, express);
 
-app.listen(3000, function() {
+app.listen(3000, () => {
   console.log('Connected on port 3000');
 });
 

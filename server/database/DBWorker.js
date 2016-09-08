@@ -21,6 +21,7 @@ whilst(
     let query = indeed.queryBuilder(job, city, limit.toString(), startNumber.toString());
     console.log('Indeed API Query: ', query);
     controller.indeedApiCall(query).then((result) => {
+      console.log(result);
       result.forEach((item) => {
         Job.findOne({jobkey: item.jobkey}).then((job) => {
           if (!job) {

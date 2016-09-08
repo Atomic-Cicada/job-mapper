@@ -8,13 +8,13 @@ let controller = require('./controller');
 let dbController = require('./database/dbcontroller');
 
 
-module.exports = function(app, express) {
+module.exports = (app, express) => {
 
-  app.post('/indeed', function(req, res) {
+  app.post('/indeed', (req, res) => {
     dbController.retrieveAll(req, res);
   });
 
-  app.get('/', function(req, res) {
+  app.get('/', (req, res) => {
     res.render('index');
   });
 };

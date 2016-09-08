@@ -6,7 +6,7 @@ let rp = require('request-promise');
 
 
 module.exports = {
-  queryBuilder: function(queryVar, locationVar, limitVar, startVar) {
+  queryBuilder: (queryVar, locationVar, limitVar, startVar) => {
     /////////////////////////////////
     // Indeed API request parameters
     /////////////////////////////////

@@ -5,10 +5,10 @@ let Promise = require('bluebird');
 let rp = require('request-promise');
 
 module.exports = {
-  indeedApiCall: function(query, cb) {
+  indeedApiCall: (query, cb) => {
     return rp.get(query).then((item) => {
       item = JSON.parse(item);
-      let results = item.results.map(function(item) {
+      let results = item.results.map((item) => {
         let obj = {
           jobtitle: item.jobtitle,
           company: item.company,
@@ -23,15 +23,9 @@ module.exports = {
         };
         return obj;
       });
-
-      return Promise.map(results, function(item) {
-        return places.googlePlacesApiCall(item);
-      }).then(function(result) {
-        return result;
-      });
-    }).
-    catch(function (err) {
-      console.log(err);
-    });
+      return Promise.map(results, (item) => { return places.googlePlacesApiCall(item); })
+      .then((result) => { return result; }); 
+    })
+    .catch((err) => { console.log(err); });
   }
 };
