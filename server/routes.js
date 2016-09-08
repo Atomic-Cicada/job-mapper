@@ -10,7 +10,7 @@ module.exports = function(app, express) {
 
   app.get('/indeed', controller.indeedApiCall);
 
-  // app.get('/', function(req, res) {
-  //   res.render(path.join(__dirname + '/../client/index.html'));
-  // });
+  app.get('/', function(req, res) {
+    res.render('index');
+  });
 };

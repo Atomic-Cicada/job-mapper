@@ -6,16 +6,12 @@ let path = require('path');
 
 let app = express();
 
+app.use(express.static(path.join(__dirname + '/../client/public')));
+
 require('./routes.js')(app, express);
 
 app.listen(3000, function() {
   console.log('Connected on port 3000');
-});
-
-app.use(express.static(path.join(__dirname + '/../client/public')));
-
-app.get('/', function(req, res) {
-  res.render('index');
 });
 
 module.exports = app;
