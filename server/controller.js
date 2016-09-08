@@ -1,32 +1,38 @@
 'use strict';
 
-let indeed = require('./indeedApi.js');
 let places = require('./placesApi.js');
 let Promise = require('bluebird');
+let rp = require('request-promise');
+
 
 module.exports = {
-  indeedApiCall: function(req, res) {
-    let query = indeed.queryBuilder(req.body.job, req.body.city, '0');
-    indeed.indeedApiCall(query, function(item) {
+  indeedApiCall: function(query, cb) {
+    return rp.get(query).then((item) => {
+      item = JSON.parse(item);
       let results = item.results.map(function(item) {
         let obj = {
-          title: item.jobtitle,
+          jobtitle: item.jobtitle,
           company: item.company,
-          city: {
-            name: item.city,
-            lat: item.latitude,
-            long: item.longitude
-          },
+          city: item.city,
           state: item.state,
+          date: item.date,
+          snippet: item.snippet,
+          url: item.url,
+          jobkey: item.jobkey,
+          latitude: item.latitude,
+          longitude: item.longitude,
         };
         return obj;
       });
 
-      Promise.map(results, function(item) {
+      return Promise.map(results, function(item) {
         return places.googlePlacesApiCall(item);
       }).then(function(result) {
-        res.send(result);
+        return result;
       });
+    }).
+    catch(function (err) {
+      console.log(err);
     });
-  });
+  }
 };
