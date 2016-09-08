@@ -1,10 +1,12 @@
+'use strict'
 let indeed = require('./indeedApi.js');
 let places = require('./placesApi.js');
 let Promise = require('bluebird');
 
 module.exports = {
   indeedApiCall: function(req, res) {
-    let query = indeed.queryBuilder('javascript', 'san francisco', '0');
+    console.log('inside the def of indeedAPICall: ', req);
+    let query = indeed.queryBuilder(req.body.job, req.body.city, '0');
     indeed.indeedApiCall(query, function(item) {
       let results = item.results.map(function(item) {
         let obj = {

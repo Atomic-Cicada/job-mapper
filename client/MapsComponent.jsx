@@ -5,36 +5,23 @@ import Marker from './Marker.jsx';
 var shallowCompare = require('react-addons-shallow-compare');
 
 export default class SimpleMapPage extends Component {
+
+  constructor(props) {
+    super(props);
+  }
+
   static defaultProps = {
-    center: {lat: 37.7749, lng: -122.4194},
-    zoom: 12,
+      center: {lat: 37.7749, lng: -122.4194},
+      zoom: 12,
   };
 
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
   }
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      markers: [
-        {lat: 37.7836966, lng: -122.4089664},
-        {lat : 37.7868619, lng : -122.403914},
-        {lat : 37.7823802, lng : -122.4052253}
-      ]
-    }
-  }
-
-  setMarkers(markerArray) {
-    this.setState({
-      markers: markerArray
-    });
-  }
-
   render() {
-    const Markers = 
-      this.state.markers
+    const Markers =
+      this.props.markers
       .map((marker, index) => (
         <Marker
           // required props
