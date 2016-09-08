@@ -2,10 +2,10 @@
 
 'use strict';
 
-let controller = require('../controller.js');
+let controller = require('../../controller.js');
 let Job = require('./schema.js');
 let mongoose = require('mongoose');
-let indeed = require('../indeedApi.js');
+let indeed = require('../../indeedApi.js');
 let whilst = require('async/whilst');
 
 let mongoUri = 'mongodb://localhost/jobmapper';
