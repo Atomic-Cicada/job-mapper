@@ -17,21 +17,22 @@ export default class SearchBar extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.props);
     $.ajax({
       url: 'http://localhost:3000/indeed',
-      type: 'GET',
+      type: 'POST',
+      data: JSON.stringify([{ job: this.state.currentJob, city: this.state.currentCity }]),
       dataType: 'json',
-      //data: '{job: this.state.currentJob, city: this.state.currentCity}',
+      contentType: "application/json; charset=utf-8",
       success: function(data) {
-        var newMarkers = [];
-        data.forEach(function(job) {
-          var marker = {lat: job.city.lat, lng: job.city.long};
-          newMarkers.push(marker);
-        })
-        this.props.setMarkers(newMarkers);
-      }.bind(this)
-
+        console.log(data);
+      //   var newMarkers = [];
+      //   data.forEach(function(job) {
+      //     var marker = {lat: job.city.lat, lng: job.city.long};
+      //     newMarkers.push(marker);
+      //   })
+      //   this.props.setMarkers(newMarkers);
+      // }.bind(this)
+      }
     })
   }
 
