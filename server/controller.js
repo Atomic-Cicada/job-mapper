@@ -1,13 +1,13 @@
 let indeed = require('./indeedApi.js');
 let places = require('./placesApi.js');
-var Promise = require('bluebird');
+let Promise = require('bluebird');
 
 module.exports = {
-  indeedApiCall: function() {
-    var query = indeed.queryBuilder('javascript', 'san francisco', '0');
+  indeedApiCall: function(req, res) {
+    let query = indeed.queryBuilder('javascript', 'san francisco', '0');
     indeed.indeedApiCall(query, function(item) {
-      var results = item.results.map(function(item) {
-        var obj = {
+      let results = item.results.map(function(item) {
+        let obj = {
           title: item.jobtitle,
           company: item.company,
           city: {
@@ -23,8 +23,7 @@ module.exports = {
       Promise.map(results, function(item) {
         return places.googlePlacesApiCall(item);
       }).then(function(result) {
-        console.log(result);
-        console.log('DONE');
+        res.send(result);
       });
     });
   }
