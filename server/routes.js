@@ -9,8 +9,7 @@ var controller = require('./controller');
 module.exports = function(app, express) {
 
   app.post('/indeed', function(req, res) {
-    console.log(req.body, 'req.body');
-    //controller.indeedApiCall(req, res);
+    controller.indeedApiCall(req, res);
   });
 
   app.get('/', function(req, res) {
