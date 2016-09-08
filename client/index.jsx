@@ -2,6 +2,8 @@ import React from 'react';
 import {render} from 'react-dom';
 import MapComponent from './MapsComponent.jsx';
 import SearchBar from './SearchBar.jsx';
+import Signin from './Signin.jsx';
+
 require('./main.css');
 // import Filter from './FilterBar.jsx';
 
@@ -26,6 +28,8 @@ class App extends React.Component {
     return (
       <div>
         <SearchBar setMarkers={this.setMarkers}/>
+        <h1>Sign in:</h1>
+        <Signin />
         <div id='mapContainer'><MapComponent markers={this.state.markers} /></div>
       </div>
     );
