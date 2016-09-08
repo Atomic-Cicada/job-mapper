@@ -5,7 +5,7 @@ export default class SearchBar extends Component {
 
   constructor(props) {
     super(props);
-    this.state= {
+    this.state = {
       currentJob: '',
       currentCity: ''
     };
@@ -22,7 +22,7 @@ export default class SearchBar extends Component {
       type: 'POST',
       data: JSON.stringify([{ job: this.state.currentJob, city: this.state.currentCity }]),
       dataType: 'json',
-      contentType: "application/json; charset=utf-8",
+      contentType: 'application/json; charset=utf-8',
       success: function(data) {
         console.log(data);
       //   var newMarkers = [];
@@ -33,7 +33,7 @@ export default class SearchBar extends Component {
       //   this.props.setMarkers(newMarkers);
       // }.bind(this)
       }
-    })
+    });
   }
 
   handleJobSearch(e) {
