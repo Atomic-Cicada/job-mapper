@@ -4,7 +4,6 @@ let places = require('./placesApi.js');
 let Promise = require('bluebird');
 let rp = require('request-promise');
 
-
 module.exports = {
   indeedApiCall: function(query, cb) {
     return rp.get(query).then((item) => {

@@ -4,7 +4,7 @@ let express = require('express');
 let request = require('request');
 let path = require('path');
 let parser = require('body-parser');
-var db = require('./database/index.js');
+let db = require('./database/index.js');
 
 let app = express();
 

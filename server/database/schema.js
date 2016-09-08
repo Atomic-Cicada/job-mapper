@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var markerSchema = mongoose.Schema({
+var jobSchema = mongoose.Schema({
   jobtitle: {type: String},
   company: {type: String},
   city: {type: String},
@@ -14,6 +14,6 @@ var markerSchema = mongoose.Schema({
   results: {type: Object}
 });
  
-var Marker = mongoose.model('Marker', markerSchema);
+var Job = mongoose.model('Job', jobSchema);
 
-module.exports = Marker;
+module.exports = Job;

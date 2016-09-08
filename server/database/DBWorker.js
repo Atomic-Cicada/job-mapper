@@ -1,14 +1,13 @@
 'use strict';
 
-var controller = require('../controller.js');
-var Marker = require('./schema.js');
-var mongoose = require('mongoose');
-var mongoUri = 'mongodb://localhost/jobmapper';
+let controller = require('../controller.js');
+let Job = require('./schema.js');
+let mongoose = require('mongoose');
 let indeed = require('../indeedApi.js');
 let whilst = require('async/whilst');
 
-// Connect Mongoose to our local MongoDB via URI specified above and export it below
-var db = mongoose.connect(mongoUri);
+let mongoUri = 'mongodb://localhost/jobmapper';
+let db = mongoose.connect(mongoUri);
 
 let startNumber = 0;
 let cont = true;
@@ -16,18 +15,16 @@ let limit = 25;
 let job = '';
 let city = 'san%20francisco';
 
-
-whilst(() => cont, (callback) => {
-  let query = indeed.queryBuilder(job, city, limit.toString(), startNumber.toString());
-  console.log(query);
-  controller.indeedApiCall(query).then((result) => {
-    if (startNumber > 1000) {
-      cont = false;
-    } else {
+whilst(
+  () => startNumber <= 1000,
+  (callback) => {
+    let query = indeed.queryBuilder(job, city, limit.toString(), startNumber.toString());
+    console.log('Indeed API Query: ', query);
+    controller.indeedApiCall(query).then((result) => {
       result.forEach((item) => {
-        Marker.findOne({jobkey: item.jobkey}).then((job) => {
+        Job.findOne({jobkey: item.jobkey}).then((job) => {
           if (!job) {
-            var newJob = new Marker({
+            let newJob = new Job({
               jobtitle: item.jobtitle,
               company: item.company,
               city: item.city,
@@ -45,10 +42,13 @@ whilst(() => cont, (callback) => {
         });
       });
       startNumber += limit;
-      console.log(startNumber);
+      console.log('Current startNumber for pagination: ', startNumber);
       setTimeout(() => callback(), 3000);
+    });
+  }, (err) => {
+    if (err) {
+      console.log(err);
     }
-  });
-}, () => {
-  console.log('done with while loop');
-});
+    console.log('done with while loop');
+  }
+);

@@ -1,12 +1,11 @@
 'use strict';
 
-var request = require('request');
-var config = require('./config.js');
-var rp = require('request-promise');
+let request = require('request');
+let config = require('./config.js');
+let rp = require('request-promise');
 
 
 module.exports = {
-
   queryBuilder: function(queryVar, locationVar, limitVar, startVar) {
     /////////////////////////////////
     // Indeed API request parameters
