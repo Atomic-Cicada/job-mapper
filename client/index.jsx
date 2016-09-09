@@ -40,7 +40,7 @@ class App extends React.Component {
       <div>
         <SearchBar setMarkers={this.setMarkers}/>
         <h1>Register:</h1>
-        <Register />
+        <Register /><br/><br/>
         <a onClick={this.handleSignIn.bind(this)} href='#'>Already have an account? Sign in here</a>
         <div id='mapContainer'><MapComponent markers={this.state.markers} /></div>
       </div>

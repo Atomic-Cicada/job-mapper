@@ -23,7 +23,6 @@ module.exports = app;
 
 // AUTHENTICATION
 // Still needed:
-// - profile component
 // - signup component
 
 var session = require('express-session');
@@ -37,11 +36,6 @@ var restrict = function(req, res, next) {
     res.redirect(301, 'index');
   }
 };
-
-
-// ROUTES
-// A user can only access his profile if he is logged in.
-// add restrict as the 2nd argument
 
 
 // Signup
