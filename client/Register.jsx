@@ -86,8 +86,8 @@ export default class Register extends Component {
       <div>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <div>Username<input type="text" name="username" value={this.state.currentUsername} onChange={this.handleUsernameInput}/></div>
-          <div>Password<input type="text" name="password" value={this.state.currentPassword} onChange={this.handlePasswordInput} /></div>
-          <div>Confirm Password<input type="text" name="password confirm" value={this.state.currentConfirmation} onChange={this.handleConfirmPasswordInput} /></div>
+          <div>Password<input type="password" name="password" value={this.state.currentPassword} onChange={this.handlePasswordInput} /></div>
+          <div>Confirm Password<input type="password" name="password confirm" value={this.state.currentConfirmation} onChange={this.handleConfirmPasswordInput} /></div>
           <input type="submit" name="submit"/>
           <p>{this.state.message}</p>
         </form>
