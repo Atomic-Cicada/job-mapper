@@ -1,7 +1,7 @@
 'use strict';
 
 let User = require('./userschema.js');
-var bcrypt = require('bcryptjs');
+let bcrypt = require('bcryptjs');
 
 
 
