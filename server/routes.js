@@ -20,25 +20,30 @@ module.exports = (app, express) => {
   });
 
   app.post('/login', function(req, res) {
-    var username = req.body.username;
-    var password = res.body.password;
-
-    // upon a successfull login the user is simply redirected back to homepage. Would be cool if we had some sort of profile page
-    if (username === 'test' && password === 'test') {
-      req.session.regenerate(function() {
-        req.session.user = username;
-        res.redirect('index');
-      });
-    } else {
-      res.redirect('index');
-    }
+    userdbController.signIn(req, res);
   });
 
-  app.get('/logout', function(req, res) {
-    req.session.destroy(function() {
-      res.redirect('index');
-    });
-  });
+
+  // app.post('/login', function(req, res) {
+  //   var username = req.body.username;
+  //   var password = res.body.password;
+
+  //   // upon a successfull login the user is simply redirected back to homepage. Would be cool if we had some sort of profile page
+  //   if (username === 'test' && password === 'test') {
+  //     req.session.regenerate(function() {
+  //       req.session.user = username;
+  //       res.redirect('index');
+  //     });
+  //   } else {
+  //     res.redirect('index');
+  //   }
+  // });
+
+  // app.get('/logout', function(req, res) {
+  //   req.session.destroy(function() {
+  //     res.redirect('index');
+  //   });
+  // });
 
 
   app.get('/', (req, res) => {

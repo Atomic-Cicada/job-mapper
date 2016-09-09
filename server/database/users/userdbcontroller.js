@@ -8,7 +8,6 @@ var bcrypt = require('bcryptjs');
 module.exports = {
 
   addOne: (req, res) => {
-
     bcrypt.genSalt(10, function(err, salt) {
       bcrypt.hash(req.body.currentPassword, salt, function(err, hash) {
         // Creates a new hash and saves it in the user object in the db
@@ -35,6 +34,32 @@ module.exports = {
         });
       });
     });
+  },
 
+  signIn: (req, res) => {
+    var username = req.body.username;
+    var password = req.body.password;
+    var salt = bcrypt.genSaltSync(10);
+    var hash = bcrypt.hashSync(password, salt);
+
+    User.findOne({ username: username }, function(err, foundUser) {
+      // console.log('foundUser looks like dis, ', foundUser);
+      if (err) { return handleError(err); }
+      if (foundUser) {
+        bcrypt.compare(password, foundUser.password, function(err, res) {
+
+          console.log('looks like we found Mr. Kwan', res);
+          req.session.regenerate(function() {
+            req.session.user = foundUser.username;
+            res.redirect('/');
+            console.log('boom looks like youre logged in');
+          });
+        });
+      } else {
+        res.status(300).send('Sorry that username does not exist');
+        console.log('you aint logged in, no username like that');
+      }
+    });
   }
+
 };
