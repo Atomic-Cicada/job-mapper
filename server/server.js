@@ -14,7 +14,8 @@ app.use(express.static(path.join(__dirname + '/../client/public')));
 
 require('./routes.js')(app, express);
 
-app.listen(3000, () => {
+let port = process.env.PORT || 3000;
+app.listen(port, () => {
   console.log('Connected on port 3000');
 });
 
