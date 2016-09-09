@@ -34,14 +34,14 @@ export default class Signin extends Component {
   handleSubmit(e) {
     e.preventDefault();
     $.ajax({
-      url: 'http://localhost:3000/login',
+      url: '/login',
       type: 'POST',
       data: JSON.stringify({ username: this.state.currentUsername, password: this.state.currentPassword }),
       contentType: 'application/json; charset=utf-8',
-      success: function(data) {
+      success: (data) => {
         this.handleSuccess();
-      }.bind(this)
-    }).fail(function(result) {
+      }
+    }).fail((result) => {
       // 305 error corresponds to wrong password
       // 300 error corresponds to no such username found
       if (result.status === 305) {
@@ -50,7 +50,7 @@ export default class Signin extends Component {
       if (result.status === 300) {
         this.rejectSignInWrongUsername();
       }
-    }.bind(this));
+    });
   }
 
   handleUsernameInput(e) {
@@ -63,7 +63,7 @@ export default class Signin extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit.bind(this)}>
+        <form onSubmit={this.handleSubmit}>
           <div>Username<input type="text" name="username" value={this.state.currentUsername} onChange={this.handleUsernameInput}/></div>
           <div>Password<input type="password" name="password" value={this.state.currentPassword} onChange={this.handlePasswordInput} /></div>
           <input type="submit" name="submit"/>

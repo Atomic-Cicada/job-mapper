@@ -24,17 +24,17 @@ export default class Register extends Component {
 
   addUser() {
     $.ajax({
-      url: 'http://localhost:3000/users',
+      url: '/users',
       type: 'POST',
       data: JSON.stringify({ currentUsername: this.state.currentUsername,
         currentPassword: this.state.currentPassword }),
       contentType: 'application/json; charset=utf-8',
-      success: function(data) {
+      success: (data) => {
         this.handleSuccess();
-      }.bind(this)
-    }).fail(function(result) {
+      }
+    }).fail((result) => {
       this.rejectUserTakenUsername();
-    }.bind(this));
+    });
   }
 
   rejectUserTakenUsername() {
@@ -84,7 +84,7 @@ export default class Register extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit.bind(this)}>
+        <form onSubmit={this.handleSubmit}>
           <div>Username<input type="text" name="username" value={this.state.currentUsername} onChange={this.handleUsernameInput}/></div>
           <div>Password<input type="password" name="password" value={this.state.currentPassword} onChange={this.handlePasswordInput} /></div>
           <div>Confirm Password<input type="password" name="password confirm" value={this.state.currentConfirmation} onChange={this.handleConfirmPasswordInput} /></div>
