@@ -8,8 +8,7 @@ export default class Register extends Component {
       currentUsername: '',
       currentPassword: '',
       currentConfirmation: '',
-      message: '',
-      exists: false
+      message: ''
     };
 
     this.rejectUserTakenUsername = this.rejectUserTakenUsername.bind(this);
@@ -19,34 +18,23 @@ export default class Register extends Component {
     this.handleUsernameInput = this.handleUsernameInput.bind(this);
     this.handlePasswordInput = this.handlePasswordInput.bind(this);
     this.handleConfirmPasswordInput = this.handleConfirmPasswordInput.bind(this);
+    this.handleSuccess = this.handleSuccess.bind(this);
+    this.passwordTest = this.passwordTest.bind(this);
   }
 
-  userExists() {
-    // Here we need to use Mongoose to check if this.state.currentUsername is already in our database
-      // if it exists
-        // return true
-      // else
-        // return false
-
-    // STILL NEED TO MAKE USERS ROUTE
+  addUser() {
     $.ajax({
       url: 'http://localhost:3000/users',
       type: 'POST',
       data: JSON.stringify({ currentUsername: this.state.currentUsername,
         currentPassword: this.state.currentPassword }),
-      dataType: 'json',
       contentType: 'application/json; charset=utf-8',
       success: function(data) {
-        console.log('and the data is', data);
-        if (data.statusCode === 200) {
-          this.setState({ exists: true });
-        }
+        this.handleSuccess();
       }.bind(this)
-    }).done(function(result) {
-      console.log('inside of done', result);
     }).fail(function(result) {
-      console.log('ok some sort of fail', result);
-    });
+      this.rejectUserTakenUsername();
+    }.bind(this));
   }
 
   rejectUserTakenUsername() {
@@ -57,44 +45,30 @@ export default class Register extends Component {
     this.setState({message: 'Sorry your passwords do not add up'});
   }
 
-  addUser() {
-    // Here we need to use Mongoose to add this particular user to the database
+  handleSuccess() {
     this.setState({message: 'Sucess! You have signed up'});
   }
 
+  passwordTest() {
+    if (this.state.currentPassword !== this.state.currentConfirmation) {
+      return false;
+    }
+    if (this.state.currentPassword.length < 7) {
+      return false;
+    }
+    return true;
+  }
 
   // This handleSubmit function should be refactored to check for an already existing user before the user submits their password
   // not after they have done all the work of adding it, like it currently is.
   handleSubmit(e) {
     e.preventDefault();
-    this.userExists();
-    // if the new username entered has not been taken then procceed
-    if (this.state.exists === false) {
-      if (this.state.currentPassword === this.state.currentConfirmation) {
-        this.addUser();
-      } else {
-        this.rejectUserBadPassword();
-      }
+    // If the password is acceptable and the confirm matches original typed then add user
+    if (this.passwordTest()) {
+      this.addUser();
     } else {
-      this.rejectUserTakenUsername();
+      this.rejectUserBadPassword();
     }
-
-    // $.ajax({
-    //   url: 'http://localhost:3000/indeed',
-    //   type: 'POST',
-    //   data: JSON.stringify({ job: this.state.currentJob, city: this.state.currentCity }),
-    //   dataType: 'json',
-    //   contentType: 'application/json; charset=utf-8',
-    //   success: function(data) {
-    //     var markers = [];
-    //     data.forEach(function(job) {
-    //       var marker = {lat: job.city.lat, lng: job.city.long};
-    //       markers.push(marker);
-    //     });
-    //     this.props.setMarkers(markers);
-    //   }.bind(this)
-    // });
-
   }
 
   handleUsernameInput(e) {

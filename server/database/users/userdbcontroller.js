@@ -16,16 +16,17 @@ module.exports = {
     });
     User.count({ username: req.body.currentUsername }, function (err, count) {
       // In other words, if the username is already taken
+      // Count is faster than the find() function
       if (count > 0) {
-        res.status(300).send('Sorry already taken!!');
+        res.status(300).send('Sorry username already taken!!');
       } else {
         user.save(function(err) {
           if (err) {
             return console.error('here is the error', err);
           }
+        }).then((results) => {
+          res.status(200).send(JSON.stringify(results));
         });
-        res.status(200).send('Great we got you in the database');
-        //console.log('sweet, expect a status of ', res.status);
       }
     });
   }
