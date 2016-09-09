@@ -15,7 +15,7 @@ let jobSchema = mongoose.Schema({
   longitude: {type: Number},
   results: {type: Object}
 });
- 
+
 let Job = mongoose.model('Job', jobSchema);
 
 module.exports = Job;

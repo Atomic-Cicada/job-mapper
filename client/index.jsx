@@ -13,7 +13,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      markers: []
+      markers: [],
+      register: false
     };
     this.setMarkers = this.setMarkers.bind(this);
   }
@@ -24,12 +25,17 @@ class App extends React.Component {
     });
   }
 
+  handleClick(e) {
+    this.setState({register: true});
+  }
+
   render () {
     return (
       <div>
         <SearchBar setMarkers={this.setMarkers}/>
         <h1>Sign in:</h1>
         <Signin />
+        <a onClick={this.handleClick.bind(this)} href='#'>Register</a>
         <div id='mapContainer'><MapComponent markers={this.state.markers} /></div>
       </div>
     );
