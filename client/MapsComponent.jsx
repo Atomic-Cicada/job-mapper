@@ -28,6 +28,7 @@ export default class SimpleMapPage extends Component {
           key={index}
           lat={marker['lat']}
           lng={marker['lng']}
+          text={marker['company']}
           // any user props
           marker={marker} />
       ));

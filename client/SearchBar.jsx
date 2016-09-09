@@ -27,7 +27,7 @@ export default class SearchBar extends Component {
         var markers = [];
         console.log(data);
         data.forEach(function(job) {
-          var marker = {lat: job.latitude, lng: job.longitude};
+          var marker = {lat: job.latitude, lng: job.longitude, company: job.company};
           markers.push(marker);
         });
         this.props.setMarkers(markers);
