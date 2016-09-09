@@ -1,3 +1,4 @@
+#! /app/bin/node
 'use strict';
 
 let dbWorker = require('../../server/database/jobs/DBWorker.js');
