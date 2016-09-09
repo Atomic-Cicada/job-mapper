@@ -68,11 +68,7 @@ var pullData = (jobQueryString, cb) => {
 );
 };
 
-module.exports = {
-  fetchData: () => {
-    // Loop over list of queries
-    each(listOfJobsToPull, (job, callback)=> {
-      pullData(job, callback);
-    });
-  }
-};
+// Loop over list of queries
+each(listOfJobsToPull, (job, callback)=> {
+  pullData(job, callback);
+});
