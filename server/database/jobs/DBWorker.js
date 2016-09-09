@@ -1,5 +1,4 @@
 // Background worker to pull down API results into DB
-
 'use strict';
 
 const controller = require('../../controller.js');
@@ -17,7 +16,7 @@ const limit = 25;
 const city = 'san francisco';
 const listOfJobsToPull = ['', 'javascript', 'software engineer', 'back end', 'front end'];
 const timeToWaitBetweenCalls = 1000;
-const startingNumber = 900;
+const startingNumber = 0;
 
 
 let cont = true;
@@ -26,7 +25,7 @@ var pullData = (jobQueryString, cb) => {
   let startNumber = startingNumber;
   whilst( // Async while loop
   // Indeed limits number of results to 1000
-  () => startNumber < (1000 - limit), // This is the test it does to see if it ends the while loop
+  () => startNumber <= 1000, // This is the test it does to see if it ends the while loop
   (callback) => {
     // Build Indeed API query
     let query = indeed.queryBuilder(jobQueryString, city, limit.toString(), startNumber.toString());
