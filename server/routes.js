@@ -34,6 +34,12 @@ module.exports = (app, express) => {
     }
   });
 
+  app.get('/logout', function(req, res) {
+    req.session.destroy(function() {
+      res.redirect('index');
+    });
+  });
+
 
   app.get('/', (req, res) => {
     res.render('index');
