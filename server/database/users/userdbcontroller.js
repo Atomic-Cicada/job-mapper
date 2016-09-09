@@ -43,17 +43,21 @@ module.exports = {
     var hash = bcrypt.hashSync(password, salt);
 
     User.findOne({ username: username }, function(err, foundUser) {
-      // console.log('foundUser looks like dis, ', foundUser);
       if (err) { return handleError(err); }
       if (foundUser) {
-        bcrypt.compare(password, foundUser.password, function(err, res) {
-
-          console.log('looks like we found Mr. Kwan', res);
-          req.session.regenerate(function() {
-            req.session.user = foundUser.username;
-            res.redirect('/');
-            console.log('boom looks like youre logged in');
-          });
+        // here we are comparing the password the user entered to what we have hashed in our db
+        // 'test' will either return true or false depending on whether the entered password is matching up
+        bcrypt.compare(password, foundUser.password, function(err, test) {
+          console.log('looks like we found Mr. Kwan', test);
+          if (test) {
+            req.session.regenerate(function() {
+              req.session.user = foundUser.username;
+              res.redirect('/');
+              console.log('boom looks like youre logged in');
+            });
+          } else {
+            res.status(305).send('Sorry seems that is an incorrect password');
+          }
         });
       } else {
         res.status(300).send('Sorry that username does not exist');
