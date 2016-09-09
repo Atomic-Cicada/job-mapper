@@ -18,7 +18,7 @@ export default class SearchBar extends Component {
   handleSubmit(e) {
     e.preventDefault();
     $.ajax({
-      url: 'http://localhost:3000/indeed',
+      url: '/indeed',
       type: 'POST',
       data: JSON.stringify({ job: this.state.currentJob, city: this.state.currentCity }),
       dataType: 'json',
@@ -27,7 +27,7 @@ export default class SearchBar extends Component {
         var markers = [];
         console.log(data);
         data.forEach(function(job) {
-          var marker = {lat: job.latitude, lng: job.longitude};
+          var marker = {lat: job.latitude, lng: job.longitude, company: job.company};
           markers.push(marker);
         });
         this.props.setMarkers(markers);

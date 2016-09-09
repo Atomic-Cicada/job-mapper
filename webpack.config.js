@@ -22,8 +22,14 @@ var config = {
         loader: 'style-loader!css-loader'
       }
     ]
-  }
-
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        'GOOGLE_MAPS_API_KEY': JSON.stringify(process.env.GOOGLE_MAPS_API_KEY),
+      }
+    }),
+  ]
 };
 
 module.exports = config;

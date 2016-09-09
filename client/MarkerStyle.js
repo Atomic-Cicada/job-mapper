@@ -10,13 +10,12 @@ const markerStyle = {
   left: -K_WIDTH / 2,
   top: -K_HEIGHT / 2,
 
-  border: '5px solid #f44336',
+  border: '1px solid #f44336',
   borderRadius: K_HEIGHT,
   backgroundColor: 'white',
   textAlign: 'center',
   color: 'blue',
-  fontSize: 16,
-  fontWeight: 'bold',
+  fontSize: 12,
   padding: 4
 };
 

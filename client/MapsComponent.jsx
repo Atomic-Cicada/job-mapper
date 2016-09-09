@@ -28,12 +28,16 @@ export default class SimpleMapPage extends Component {
           key={index}
           lat={marker['lat']}
           lng={marker['lng']}
+          text={marker['company']}
           // any user props
           marker={marker} />
       ));
 
     return (
        <GoogleMap
+        bootstrapURLKeys={{
+          key: process.env.GOOGLE_MAPS_API_KEY
+        }}
         defaultCenter={this.props.center}
         defaultZoom={this.props.zoom}>
         {Markers}
