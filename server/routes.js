@@ -11,7 +11,7 @@ let dbController = require('./database/dbcontroller');
 module.exports = (app, express) => {
 
   app.post('/indeed', (req, res) => {
-    dbController.retrieveAll(req, res);
+    dbController.retrieveAll(req, res); // Requests for data go to database
   });
 
   app.get('/', (req, res) => {
