@@ -16,7 +16,7 @@ module.exports = {
           password: hash,
           salt: salt
         });
-
+        console.log(req.body);
         User.count({ username: req.body.currentUsername }, function (err, count) {
           // First we check to see if the username is already taken
           // Count is faster than the find() function- there is no need to return the existing user from the db

@@ -53,7 +53,6 @@ export class Container extends React.Component {
   }
 
   render() {
-
     // MARKER CREATION
     const Markers =
         this.state.markers
@@ -129,5 +128,5 @@ export class Container extends React.Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: ''
+  apiKey: process.env.GOOGLE_MAPS_API_KEY
 })(Container);

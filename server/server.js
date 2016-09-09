@@ -22,10 +22,6 @@ app.use(parser.json());
 app.use(express.static(path.join(__dirname + '/../client/public')));
 
 require('./routes.js')(app, express);
-console.log(process.env.PORT);
-console.log(process.env.GOOGLE_MAPS_API_KEY);
-console.log(process.env.GOOGLE_PLACES_API_KEY);
-console.log(process.env.INDEED_PUBLISHER_ID);
 
 let port = process.env.PORT || 3000;
 app.listen(port, () => {

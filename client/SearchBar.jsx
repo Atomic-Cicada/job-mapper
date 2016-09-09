@@ -17,13 +17,17 @@ export default class SearchBar extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    $.ajax({
-      url: '/indeed',
-      type: 'POST',
-      data: JSON.stringify({ job: this.state.currentJob, city: this.state.currentCity }),
-      dataType: 'json',
-      contentType: 'application/json; charset=utf-8',
-      success: function(data) {
+    let myHeaders = new Headers({
+      'Content-Type': 'application/json; charset=utf-8'
+    });
+    let options = {
+      method: 'POST',
+      headers: myHeaders,
+      body: JSON.stringify({ job: this.state.currentJob, city: this.state.currentCity }),
+    };
+    fetch('/indeed', options).
+    then((response) => {
+      return response.json().then((data) => {
         var markers = [];
         data.forEach(function(job) {
           var marker = {
@@ -37,10 +41,15 @@ export default class SearchBar extends Component {
           markers.push(marker);
         });
         this.props.setMarkers(markers);
-      }.bind(this)
+      });
+
+      
+    })
+    .catch((error) => {
+      console.log('There has been a problem with your fetch operation: ' + error.message);
     });
   }
-
+  
   handleJobSearch(e) {
     this.setState({currentJob: e.target.value});
   }

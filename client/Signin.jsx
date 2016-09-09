@@ -33,23 +33,26 @@ export default class Signin extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    $.ajax({
-      url: '/login',
-      type: 'POST',
-      data: JSON.stringify({ username: this.state.currentUsername, password: this.state.currentPassword }),
-      contentType: 'application/json; charset=utf-8',
-      success: (data) => {
+    let myHeaders = new Headers({
+      'Content-Type': 'application/json; charset=utf-8'
+    });
+    let options = {
+      method: 'POST',
+      headers: myHeaders,
+      body: JSON.stringify({ username: this.state.currentUsername, password: this.state.currentPassword })
+    };
+    fetch('/login', options).
+    then((response) => {
+      if (response.status === 305) {
+        this.rejectSignInWrongPassword();
+      } else if (response.status === 300) {
+        this.rejectSignInWrongUsername();
+      } else {
         this.handleSuccess();
       }
-    }).fail((result) => {
-      // 305 error corresponds to wrong password
-      // 300 error corresponds to no such username found
-      if (result.status === 305) {
-        this.rejectSignInWrongPassword();
-      }
-      if (result.status === 300) {
-        this.rejectSignInWrongUsername();
-      }
+    })
+    .catch((error) => {
+      console.log('There has been a problem with your fetch operation: ' + error.message);
     });
   }
 
