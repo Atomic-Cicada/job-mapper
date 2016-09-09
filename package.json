@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "./node_modules/.bin/webpack -d -w",
+    "dev": "./node_modules/.bin/webpack -d -w --progress --colors",
     "dbworker": "node ./server/database/jobs/DBWorker.js",
     "start": "node ./server/server.js",
     "postinstall": "npm run build",
-    "build": "./node_modules/.bin/webpack"
+    "build": "./node_modules/.bin/webpack --progress --colors"
   },
   "repository": {
     "type": "git",
