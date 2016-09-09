@@ -5,7 +5,9 @@ let controller = require('../../controller.js');
 
 module.exports = {
   retrieveAll: (req, res) => {
-    Job.find().then((results) => {
+    let searchString = req.body.job;
+    var re = new RegExp(searchString, 'i');
+    Job.find().or([{ 'jobtitle': { $regex: re }}, {'snippet': { $regex: re }}]).then((results) => {
       res.status(200).send(JSON.stringify(results));
     });
   }
