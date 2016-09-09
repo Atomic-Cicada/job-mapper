@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Map, {GoogleApiWrapper} from 'google-maps-react';
 import Marker from 'google-maps-react/dist/components/Marker.js';
 import InfoWindow from 'google-maps-react/dist/components/InfoWindow.js';
+// import Map from './Map.jsx';
 import SearchBar from './SearchBar.jsx';
 import Signin from './Signin.jsx';
 import Register from './Register.jsx';
@@ -52,6 +53,8 @@ export class Container extends React.Component {
   }
 
   render() {
+
+    // MARKER CREATION
     const Markers =
         this.state.markers
         .map((marker, index) => (
@@ -65,11 +68,43 @@ export class Container extends React.Component {
             position={{lat: marker['lat'], lng: marker['lng']}} />
         ));
 
-    return (
+    if (this.state.register) {
+      return (
+        <div>
+          <SearchBar setMarkers={this.setMarkers}/>
+          <h1>Register:</h1>
+          <Register /><br/><br/>
+          <a onClick={this.handleSignIn.bind(this)} href='#'>Already have an account? Sign in here</a>
+          <Map google={this.props.google}
+              style={{width: '100%', height: '80%', position: 'relative'}}
+              className={'map'}
+              zoom={14}
+              onClick={this.onMapClicked}
+              onDragend={this.onMapMoved}>
+            {Markers}
+            <InfoWindow
+              marker={this.state.activeMarker}
+              visible={this.state.showingInfoWindow}
+              onClose={this.onInfoWindowClose}>
+                <div>
+                  <h2>{this.state.selectedPlace.company}</h2>
+                  <h3>{this.state.selectedPlace.jobtitle}</h3>
+                  <h4>{this.state.selectedPlace.snippet}</h4>
+                  <div><a href={this.state.selectedPlace.url}>Click to View</a></div>
+              </div>
+            </InfoWindow>
+          </Map>
+        </div>
+      );
+    } else {
+      return (
       <div>
         <SearchBar setMarkers={this.setMarkers}/>
+        <h1>Sign in:</h1>
+        <Signin />
+        <a onClick={this.handleRegister.bind(this)} href='#'>Register</a>
         <Map google={this.props.google}
-            style={{width: '100%', height: '75%', position: 'relative'}}
+            style={{width: '100%', height: '80%', position: 'relative'}}
             className={'map'}
             zoom={14}
             onClick={this.onMapClicked}
@@ -89,6 +124,7 @@ export class Container extends React.Component {
         </Map>
       </div>
     );
+    }
   }
 }
 
