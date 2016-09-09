@@ -16,7 +16,7 @@ module.exports = (app, express) => {
   });
 
   app.post('/users', (req, res) => {
-    userdbController.findOne(req, res); // See if this username is already taken or not
+    userdbController.addOne(req, res); // See if this username is already taken or not
   });
 
   app.get('/', (req, res) => {

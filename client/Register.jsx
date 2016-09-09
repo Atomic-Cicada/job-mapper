@@ -11,6 +11,14 @@ export default class Register extends Component {
       message: '',
       exists: false
     };
+
+    this.rejectUserTakenUsername = this.rejectUserTakenUsername.bind(this);
+    this.rejectUserBadPassword = this.rejectUserBadPassword.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.addUser = this.addUser.bind(this);
+    this.handleUsernameInput = this.handleUsernameInput.bind(this);
+    this.handlePasswordInput = this.handlePasswordInput.bind(this);
+    this.handleConfirmPasswordInput = this.handleConfirmPasswordInput.bind(this);
   }
 
   userExists() {
@@ -19,20 +27,25 @@ export default class Register extends Component {
         // return true
       // else
         // return false
-    console.log('ok we running the userExists() function breh');
 
     // STILL NEED TO MAKE USERS ROUTE
     $.ajax({
       url: 'http://localhost:3000/users',
       type: 'POST',
-      data: JSON.stringify({ currentUsername: this.state.currentUsername }),
+      data: JSON.stringify({ currentUsername: this.state.currentUsername,
+        currentPassword: this.state.currentPassword }),
       dataType: 'json',
       contentType: 'application/json; charset=utf-8',
       success: function(data) {
-        if (data.status === 200) {
+        console.log('and the data is', data);
+        if (data.statusCode === 200) {
           this.setState({ exists: true });
         }
       }.bind(this)
+    }).done(function(result) {
+      console.log('inside of done', result);
+    }).fail(function(result) {
+      console.log('ok some sort of fail', result);
     });
   }
 
@@ -54,7 +67,9 @@ export default class Register extends Component {
   // not after they have done all the work of adding it, like it currently is.
   handleSubmit(e) {
     e.preventDefault();
-    if (this.userExists() === false) {
+    this.userExists();
+    // if the new username entered has not been taken then procceed
+    if (this.state.exists === false) {
       if (this.state.currentPassword === this.state.currentConfirmation) {
         this.addUser();
       } else {
