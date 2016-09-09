@@ -25,9 +25,12 @@ export default class SearchBar extends Component {
       contentType: 'application/json; charset=utf-8',
       success: function(data) {
         var markers = [];
-        console.log(data);
         data.forEach(function(job) {
+<<<<<<< 97969afe40bf7f40933c06e622ff7cc938ea410a
           var marker = {lat: job.latitude, lng: job.longitude, company: job.company};
+=======
+          var marker = {lat: job.latitude, lng: job.longitude, name: job.company};
+>>>>>>> working info windows and markers!!
           markers.push(marker);
         });
         this.props.setMarkers(markers);
