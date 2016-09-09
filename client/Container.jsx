@@ -76,7 +76,7 @@ export class Container extends React.Component {
           <Register /><br/><br/>
           <a onClick={this.handleSignIn.bind(this)} href='#'>Already have an account? Sign in here</a>
           <Map google={this.props.google}
-              style={{width: '100%', height: '80%', position: 'relative'}}
+              style={{width: '50%', height: '50%', position: 'relative'}}
               className={'map'}
               zoom={14}
               onClick={this.onMapClicked}
@@ -104,7 +104,7 @@ export class Container extends React.Component {
         <Signin />
         <a onClick={this.handleRegister.bind(this)} href='#'>Register</a>
         <Map google={this.props.google}
-            style={{width: '100%', height: '80%', position: 'relative'}}
+            style={{width: '50%', height: '50%', position: 'relative'}}
             className={'map'}
             zoom={14}
             onClick={this.onMapClicked}
