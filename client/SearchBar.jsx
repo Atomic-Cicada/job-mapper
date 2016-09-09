@@ -18,7 +18,7 @@ export default class SearchBar extends Component {
   handleSubmit(e) {
     e.preventDefault();
     $.ajax({
-      url: 'http://localhost:3000/indeed',
+      url: '/indeed',
       type: 'POST',
       data: JSON.stringify({ job: this.state.currentJob, city: this.state.currentCity }),
       dataType: 'json',
