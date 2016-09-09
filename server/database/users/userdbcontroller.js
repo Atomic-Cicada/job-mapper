@@ -50,10 +50,10 @@ module.exports = {
         bcrypt.compare(password, foundUser.password, function(err, test) {
           console.log('looks like we found Mr. Kwan', test);
           if (test) {
+            // Here we are creating a session.
             req.session.regenerate(function() {
               req.session.user = foundUser.username;
               res.redirect('/');
-              console.log('boom looks like youre logged in');
             });
           } else {
             res.status(305).send('Sorry seems that is an incorrect password');
@@ -61,7 +61,6 @@ module.exports = {
         });
       } else {
         res.status(300).send('Sorry that username does not exist');
-        console.log('you aint logged in, no username like that');
       }
     });
   }
