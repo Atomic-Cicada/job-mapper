@@ -21,9 +21,9 @@ module.exports = {
     // format  Format. Which output format of the API you wish to use. The options are "xml" and "json". If omitted or invalid, the XML format is used.
     let format = '&format=' + 'json';
     // q Query. By default terms are ANDed. To see what is possible, use our advanced search page to perform a search and then check the url for the q value.
-    let query = '&q=' + queryVar;
+    let query = '&q=' + encodeURIComponent(queryVar.trim());
     // l Location. Use a postal code or a "city, state/province/region" combination.
-    let loc = '&l=' + locationVar;
+    let loc = '&l=' + encodeURIComponent(locationVar.trim());
     // latlong If latlong=1, returns latitude and longitude information for each job result. Default is 0.
     let latlong = '&latlong=' + '1';
     // co  Search within country specified. Default is us See below for a complete list of supported countries.
@@ -33,9 +33,9 @@ module.exports = {
     // useragent The User-Agent (browser) of the end-user to whom the job results will be displayed. This can be obtained from the "User-Agent" HTTP request header from the end-user. This field is required.
     let userAgent = '&useragent=' + 'Mozilla/%2F4.0%28Firefox%29';
     // limit Maximum number of results returned per query. Default is 10
-    let limit = '&limit=' + limitVar;
+    let limit = '&limit=' + encodeURIComponent(limitVar.trim());
     // start Start results at this result number, beginning with 0. Default is 0.
-    let start = '&start=' + startVar;
+    let start = '&start=' + encodeURIComponent(startVar.trim(startVar));
 
 
     // --------------------- //
