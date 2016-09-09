@@ -1,7 +1,6 @@
 'use strict';
 
 let request = require('request');
-let config = require('./config.js');
 let rp = require('request-promise');
 
 
@@ -15,7 +14,7 @@ module.exports = {
     // PARAMETERS IN USE //
     // ----------------- //
     // publisher Publisher ID. Your publisher ID is "PUBLISHER ID HERE". This is assigned when you register as a publisher.
-    let publisher = 'publisher=' + config.INDEED_PUBLISHER_ID;
+    let publisher = 'publisher=' + process.env.INDEED_PUBLISHER_ID;
     // v Version. Which version of the API you wish to use. All publishers should be using version 2. Currently available versions are 1 and 2. This parameter is required.
     let version = '&v=' + '2';
     // format  Format. Which output format of the API you wish to use. The options are "xml" and "json". If omitted or invalid, the XML format is used.

@@ -1,10 +1,9 @@
 'use strict';
 
 let request = require('request');
-let config = require('./config.js');
 let rp = require('request-promise');
 
-let API_KEY = config.GOOGLE_PLACES_API_KEY;
+let API_KEY = process.env.GOOGLE_PLACES_API_KEY;
 
 module.exports = {
   googlePlacesApiCall: (obj) => {
