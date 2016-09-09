@@ -6,17 +6,12 @@ var bcrypt = require('bcryptjs');
 
 
 module.exports = {
-  // retrieveAll: (req, res) => {
-  //   User.find().then((results) => {
-  //     res.status(200).send(JSON.stringify(results));
-  //   });
-  // }
+
   addOne: (req, res) => {
-    //var salt = bcrypt.genSaltSync(10);
-    //var hash = bcrypt.hashSync(req.body.currentPassword, salt);
+
     bcrypt.genSalt(10, function(err, salt) {
       bcrypt.hash(req.body.currentPassword, salt, function(err, hash) {
-        // Store hash in your password DB.
+        // Creates a new hash and saves it in the user object in the db
         var user = new User({
           username: req.body.currentUsername,
           password: hash,
@@ -24,8 +19,8 @@ module.exports = {
         });
 
         User.count({ username: req.body.currentUsername }, function (err, count) {
-        // In other words, if the username is already taken
-        // Count is faster than the find() function
+          // First we check to see if the username is already taken
+          // Count is faster than the find() function- there is no need to return the existing user from the db
           if (count > 0) {
             res.status(300).send('Sorry username already taken!!');
           } else {
@@ -42,17 +37,4 @@ module.exports = {
     });
 
   }
-
-
-
-  //     )
-  //   .then ((results) => {
-  //     console.log('calling findOne brooooo');
-  //     res.status(200).send(JSON.stringify(results));
-  //   });
-  // },
-
-  // addOne: (req, res) => {
-  //   User.save({});
-  // }
 };
