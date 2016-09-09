@@ -22,18 +22,27 @@ export default class Register extends Component {
     this.passwordTest = this.passwordTest.bind(this);
   }
 
+
   addUser() {
-    $.ajax({
-      url: '/users',
-      type: 'POST',
-      data: JSON.stringify({ currentUsername: this.state.currentUsername,
-        currentPassword: this.state.currentPassword }),
-      contentType: 'application/json; charset=utf-8',
-      success: (data) => {
+    let myHeaders = new Headers({
+      'Content-Type': 'application/json; charset=utf-8'
+    });
+    let options = {
+      method: 'POST',
+      headers: myHeaders,
+      body: JSON.stringify({ currentUsername: this.state.currentUsername,
+        currentPassword: this.state.currentPassword })
+    };
+    fetch('/users', options).
+    then((response) => {
+      if (response.ok) {
         this.handleSuccess();
+      } else {
+        this.rejectUserTakenUsername();
       }
-    }).fail((result) => {
-      this.rejectUserTakenUsername();
+    })
+    .catch((error) => {
+      console.log('There has been a problem with your fetch operation: ' + error.message);
     });
   }
 
