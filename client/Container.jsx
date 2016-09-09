@@ -53,7 +53,6 @@ export class Container extends React.Component {
   }
 
   render() {
-    console.log(process.env.GOOGLE_MAPS_API_KEY);
     // MARKER CREATION
     const Markers =
         this.state.markers
