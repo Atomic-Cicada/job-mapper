@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "./node_modules/.bin/webpack -d -w"
+    "dev": "./node_modules/.bin/webpack -d -w",
+    "dbworker": "node ./server/database/jobs/DBWorker.js"
   },
   "repository": {
     "type": "git",

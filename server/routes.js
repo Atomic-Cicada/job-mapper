@@ -5,7 +5,7 @@ let places = require('./placesApi.js');
 let path = require('path');
 
 let controller = require('./controller');
-let dbController = require('./database/dbcontroller');
+let dbController = require('./database/jobs/dbcontroller');
 
 
 module.exports = (app, express) => {
