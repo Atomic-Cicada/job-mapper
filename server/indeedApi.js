@@ -35,34 +35,35 @@ module.exports = {
     let limit = '&limit=' + encodeURIComponent(limitVar.trim());
     // start Start results at this result number, beginning with 0. Default is 0.
     let start = '&start=' + encodeURIComponent(startVar.trim(startVar));
-
+    // fromage Number of days back to search.
+    let fromAge = '&fromage=' + '1';
 
     // --------------------- //
     // PARAMETERS NOT IN USE //
     // --------------------- //
+    
     /*
     // callback  Callback. The name of a javascript function to use as a callback to which the results of the search are passed. This only applies when format=json. For security reasons, the callback name is restricted letters, numbers, and the underscore character.
     let callback = '&callback=' + '';
     // radius  Distance from search location ("as the crow flies"). Default is 25.
     let radius = '&radius=' + '25';
-    // sort  Sort by relevance or date. Default is relevance.
-    let sort = '&sort=' + 'relevance';
     // st  Site type. To show only jobs from job boards use "jobsite". For jobs from direct employer websites use "employer".
     let siteType = '&st=' + '';
     // jt  Job type. Allowed values: "fulltime", "parttime", "contract", "internship", "temporary".
     let jobType = '&jt=' + '';
-    // fromage Number of days back to search.
-    let fromAge = '&fromage=' + '';
     // highlight Setting this value to 1 will bold terms in the snippet that are also present in q. Default is 0.
     let highlight = '&highlight=' + '';
     // filter  Filter duplicate results. 0 turns off duplicate job filtering. Default is 1.
     let filter = '&filter=' + '';
     // chnl  Channel Name: Group API requests to a specific channel
     let chnl = '&chnl=' + '';
+    // sort  Sort by relevance or date. Default is relevance.
+    let sort = '&sort=' + 'date';
     */
+    
 
     // Built out URL from parameters
-    let params = publisher + version + format + query + loc + latlong + co + userIp + userAgent + limit + start;
+    let params = publisher + version + format + query + loc + latlong + co + userIp + userAgent + limit + start + fromAge;
     let builtUrl = 'http://api.indeed.com/ads/apisearch?' + params;
     return builtUrl;
   }

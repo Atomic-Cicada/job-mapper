@@ -40,6 +40,7 @@ export default class SearchBar extends Component {
           };
           markers.push(marker);
         });
+        console.log(markers.length);
         this.props.setMarkers(markers);
       });
 

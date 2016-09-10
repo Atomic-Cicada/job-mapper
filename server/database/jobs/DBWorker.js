@@ -19,20 +19,23 @@ const timeToWaitBetweenCalls = 1000;
 const startingNumber = 0;
 
 
-let cont = true;
+
 
 var pullData = (jobQueryString, cb) => {
   let startNumber = startingNumber;
+  let cont = true;
   whilst( // Async while loop
   // Indeed limits number of results to 1000
-  () => startNumber <= 1000, // This is the test it does to see if it ends the while loop
+  () => cont, // This is the test it does to see if it ends the while loop
   (callback) => {
     // Build Indeed API query
     let query = indeed.queryBuilder(jobQueryString, city, limit.toString(), startNumber.toString());
     console.log('Indeed API Query: ', query);
     controller.indeedApiCall(query).then((result) => { // Make call to Indeed API
-      if (result) {
-        result.forEach((item) => {
+      if (startNumber + 1 !== result.start) {
+        cont = false;
+      } else {
+        result.results.forEach((item) => {
           Job.findOne({jobkey: item.jobkey}).then((job) => {
             if (!job) { // Check to see if jobkey doesn't already exist in DB
               let newJob = new Job({
@@ -52,9 +55,9 @@ var pullData = (jobQueryString, cb) => {
             }
           });
         });
+        startNumber += limit; // Increment startNumber to get next page of results
+        console.log('Current startNumber for pagination: ', startNumber);
       }
-      startNumber += limit; // Increment startNumber to get next page of results
-      console.log('Current startNumber for pagination: ', startNumber);
       setTimeout(() => callback(), timeToWaitBetweenCalls); // this callback indicates end of one while loop
     });
   }, (err) => {

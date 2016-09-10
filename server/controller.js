@@ -9,24 +9,26 @@ module.exports = {
     return rp.get(query).then((item) => {
       item = JSON.parse(item);
       // Build partial array of results from Indeed API Call
-      let results = item.results.map((item) => {
+      let resultObj = {};
+      resultObj.start = item.start;
+      resultObj.results = item.results.map((job) => {
         let obj = {
-          jobtitle: item.jobtitle,
-          company: item.company,
-          city: item.city,
-          state: item.state,
-          date: item.date,
-          snippet: item.snippet,
-          url: item.url,
-          jobkey: item.jobkey,
-          latitude: item.latitude,
-          longitude: item.longitude,
+          jobtitle: job.jobtitle,
+          company: job.company,
+          city: job.city,
+          state: job.state,
+          date: job.date,
+          snippet: job.snippet,
+          url: job.url,
+          jobkey: job.jobkey,
+          latitude: job.latitude,
+          longitude: job.longitude,
         };
         return obj;
       });
       // Using the results from Indeed, make calls to Google Places API and update results array
-      return Promise.map(results, (item) => { return places.googlePlacesApiCall(item); })
-      .then((result) => { return result; }); 
+      return Promise.map(resultObj.results, (item) => { return places.googlePlacesApiCall(item); })
+      .then((result) => { return resultObj; }); 
     })
     .catch((err) => { console.log(err); });
   }
