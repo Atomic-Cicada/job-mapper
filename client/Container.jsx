@@ -69,58 +69,70 @@ export class Container extends React.Component {
 
     if (this.state.register) {
       return (
-        <div>
+        <div className='application'>
           <SearchBar setMarkers={this.setMarkers}/>
-          <h1>Register:</h1>
-          <Register /><br/><br/>
-          <a onClick={this.handleSignIn.bind(this)} href='#'>Already have an account? Sign in here</a>
-          <Map google={this.props.google}
-              style={{width: '50%', height: '50%', position: 'relative'}}
-              className={'map'}
-              zoom={14}
-              onClick={this.onMapClicked}
-              onDragend={this.onMapMoved}>
-            {Markers}
-            <InfoWindow
-              marker={this.state.activeMarker}
-              visible={this.state.showingInfoWindow}
-              onClose={this.onInfoWindowClose}>
-                <div>
-                  <h2>{this.state.selectedPlace.company}</h2>
-                  <h3>{this.state.selectedPlace.jobtitle}</h3>
-                  <h4>{this.state.selectedPlace.snippet}</h4>
-                  <div><a href={this.state.selectedPlace.url}>Click to View</a></div>
-              </div>
-            </InfoWindow>
-          </Map>
+          <div className='overallContainer'>
+            <div className='header'>
+              <h1>Register:</h1>
+              <Register /><br/><br/>
+              <a onClick={this.handleSignIn.bind(this)} href='#'>Already have an account? Sign in here</a>
+            </div>
+            <div className='mapContainer'>
+            <Map google={this.props.google}
+                style={{width: '100%', height: '100%', position: 'relative'}}
+                className={'map'}
+                zoom={14}
+                onClick={this.onMapClicked}
+                onDragend={this.onMapMoved}>
+              {Markers}
+              <InfoWindow
+                marker={this.state.activeMarker}
+                visible={this.state.showingInfoWindow}
+                onClose={this.onInfoWindowClose}>
+                  <div>
+                    <h2>{this.state.selectedPlace.company}</h2>
+                    <h3>{this.state.selectedPlace.jobtitle}</h3>
+                    <h4>{this.state.selectedPlace.snippet}</h4>
+                    <div><a href={this.state.selectedPlace.url}>Click to View</a></div>
+                </div>
+              </InfoWindow>
+            </Map>
+            </div>
+          </div>
         </div>
       );
     } else {
       return (
-      <div>
+      <div className='application'>
         <SearchBar setMarkers={this.setMarkers}/>
-        <h1>Sign in:</h1>
-        <Signin />
-        <a onClick={this.handleRegister.bind(this)} href='#'>Register</a>
-        <Map google={this.props.google}
-            style={{width: '50%', height: '50%', position: 'relative'}}
-            className={'map'}
-            zoom={14}
-            onClick={this.onMapClicked}
-            onDragend={this.onMapMoved}>
-          {Markers}
-          <InfoWindow
-            marker={this.state.activeMarker}
-            visible={this.state.showingInfoWindow}
-            onClose={this.onInfoWindowClose}>
-              <div>
-                <h2>{this.state.selectedPlace.company}</h2>
-                <h3>{this.state.selectedPlace.jobtitle}</h3>
-                <h4>{this.state.selectedPlace.snippet}</h4>
-                <div><a href={this.state.selectedPlace.url}>Click to View</a></div>
-              </div>
-          </InfoWindow>
-        </Map>
+        <div className='overallContainer'>
+          <div className='header'>
+            <h1>Sign in:</h1>
+            <Signin />
+            <a onClick={this.handleRegister.bind(this)} href='#'>Register</a>
+          </div>
+          <div className='mapContainer'>
+            <Map google={this.props.google}
+                style={{width: '100%', height: '100%', position: 'relative'}}
+                className={'map'}
+                zoom={14}
+                onClick={this.onMapClicked}
+                onDragend={this.onMapMoved}>
+              {Markers}
+              <InfoWindow
+                marker={this.state.activeMarker}
+                visible={this.state.showingInfoWindow}
+                onClose={this.onInfoWindowClose}>
+                  <div>
+                    <h2>{this.state.selectedPlace.company}</h2>
+                    <h3>{this.state.selectedPlace.jobtitle}</h3>
+                    <h4>{this.state.selectedPlace.snippet}</h4>
+                    <div><a href={this.state.selectedPlace.url}>Click to View</a></div>
+                  </div>
+              </InfoWindow>
+            </Map>
+          </div>
+        </div>
       </div>
     );
     }
