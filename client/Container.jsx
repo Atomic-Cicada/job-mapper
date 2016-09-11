@@ -4,8 +4,9 @@ import Map, {GoogleApiWrapper} from 'google-maps-react';
 import Marker from 'google-maps-react/dist/components/Marker.js';
 import InfoWindow from 'google-maps-react/dist/components/InfoWindow.js';
 import SearchBar from './SearchBar.jsx';
-import Signin from './Signin.jsx';
-import Register from './Register.jsx';
+import UserHome from './UserHome.jsx';
+import UserSideBar from './UserSideBar.jsx';
+
 
 export class Container extends React.Component {
   constructor(props) {
@@ -15,20 +16,14 @@ export class Container extends React.Component {
       activeMarker: {},
       selectedPlace: {},
       markers: [],
-      register: false
+      register: false,
+      loggedIn: false
     };
     this.onMarkerClick = this.onMarkerClick.bind(this);
     this.onInfoWindowClose = this.onInfoWindowClose.bind(this);
     this.setMarkers = this.setMarkers.bind(this);
     this.onMapClicked = this.onMapClicked.bind(this);
-  }
-
-  handleRegister(e) {
-    this.setState({register: true});
-  }
-
-  handleSignIn(e) {
-    this.setState({register: false});
+    this.LogInUser = this.LogInUser.bind(this);
   }
 
   onMarkerClick(props, marker, e) {
@@ -61,6 +56,10 @@ export class Container extends React.Component {
     });
   }
 
+  LogInUser(e) {
+    this.setState({loggedIn: true});
+  }
+
   render() {
     const Markers =
         this.state.markers
@@ -75,29 +74,13 @@ export class Container extends React.Component {
             position={{lat: marker['lat'], lng: marker['lng']}} />
         ));
 
-    var signInButton;
-    var signInHeader;
-    var signIntext;
-    if (this.state.register) {
-      signInHeader = <h1>Register:</h1>;
-      signInButton = <Register />;
-      signIntext = <a onClick={this.handleSignIn.bind(this)} href='#'>Already have an account? Sign in here</a>;
-    } else {
-      signInHeader = <h1>Sign in:</h1>;
-      signInButton = <Signin />;
-      signIntext = <a onClick={this.handleRegister.bind(this)} href='#'>Register</a>;
-    }
-    
+    let sideBar = this.state.loggedIn ? <UserHome /> : <UserSideBar LogInUser={this.LogInUser}/>;
+
     return (
       <div className='application'>
         <SearchBar setMarkers={this.setMarkers}/>
         <div className='overallContainer'>
-          <div className='header'>
-            {signInHeader}
-            {signInButton}
-            {signIntext}
-            <br/><br/>
-          </div>
+          {sideBar}
           <div className='mapContainer'>
           <Map google={this.props.google}
               style={{width: '100%', height: '100%', position: 'relative'}}

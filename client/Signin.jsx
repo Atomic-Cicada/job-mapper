@@ -1,8 +1,6 @@
 import React, {PropTypes, Component} from 'react';
 
 export default class Signin extends Component {
-
-
   constructor(props) {
     super(props);
     this.state = {
@@ -29,6 +27,7 @@ export default class Signin extends Component {
 
   handleSuccess() {
     this.setState({message: 'Great! You are signed in'});
+    this.props.LogInUser();
   }
 
   handleSubmit(e) {
