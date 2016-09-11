@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import Map, {GoogleApiWrapper} from 'google-maps-react';
 import Marker from 'google-maps-react/dist/components/Marker.js';
 import InfoWindow from 'google-maps-react/dist/components/InfoWindow.js';
-// import Map from './Map.jsx';
 import SearchBar from './SearchBar.jsx';
 import Signin from './Signin.jsx';
 import Register from './Register.jsx';
@@ -21,6 +20,7 @@ export class Container extends React.Component {
     this.onMarkerClick = this.onMarkerClick.bind(this);
     this.onInfoWindowClose = this.onInfoWindowClose.bind(this);
     this.setMarkers = this.setMarkers.bind(this);
+    this.onMapClicked = this.onMapClicked.bind(this);
   }
 
   handleRegister(e) {
@@ -46,6 +46,15 @@ export class Container extends React.Component {
     });
   }
 
+  onMapClicked(props) {
+    if (this.state.showingInfoWindow) {
+      this.setState({
+        showingInfoWindow: false,
+        activeMarker: null
+      });
+    }
+  }
+
   setMarkers(markerArray) {
     this.setState({
       markers: markerArray
@@ -53,7 +62,6 @@ export class Container extends React.Component {
   }
 
   render() {
-    // MARKER CREATION
     const Markers =
         this.state.markers
         .map((marker, index) => (
@@ -67,75 +75,53 @@ export class Container extends React.Component {
             position={{lat: marker['lat'], lng: marker['lng']}} />
         ));
 
+    var signInButton;
+    var signInHeader;
+    var signIntext;
     if (this.state.register) {
-      return (
-        <div className='application'>
-          <SearchBar setMarkers={this.setMarkers}/>
-          <div className='overallContainer'>
-            <div className='header'>
-              <h1>Register:</h1>
-              <Register /><br/><br/>
-              <a onClick={this.handleSignIn.bind(this)} href='#'>Already have an account? Sign in here</a>
-            </div>
-            <div className='mapContainer'>
-            <Map google={this.props.google}
-                style={{width: '100%', height: '100%', position: 'relative'}}
-                className={'map'}
-                zoom={14}
-                onClick={this.onMapClicked}
-                onDragend={this.onMapMoved}>
-              {Markers}
-              <InfoWindow
-                marker={this.state.activeMarker}
-                visible={this.state.showingInfoWindow}
-                onClose={this.onInfoWindowClose}>
-                  <div>
-                    <h2>{this.state.selectedPlace.company}</h2>
-                    <h3>{this.state.selectedPlace.jobtitle}</h3>
-                    <h4>{this.state.selectedPlace.snippet}</h4>
-                    <div><a href={this.state.selectedPlace.url}>Click to View</a></div>
-                </div>
-              </InfoWindow>
-            </Map>
-            </div>
-          </div>
-        </div>
-      );
+      signInHeader = <h1>Register:</h1>;
+      signInButton = <Register />;
+      signIntext = <a onClick={this.handleSignIn.bind(this)} href='#'>Already have an account? Sign in here</a>;
     } else {
-      return (
+      signInHeader = <h1>Sign in:</h1>;
+      signInButton = <Signin />;
+      signIntext = <a onClick={this.handleRegister.bind(this)} href='#'>Register</a>;
+    }
+    
+    return (
       <div className='application'>
         <SearchBar setMarkers={this.setMarkers}/>
         <div className='overallContainer'>
           <div className='header'>
-            <h1>Sign in:</h1>
-            <Signin />
-            <a onClick={this.handleRegister.bind(this)} href='#'>Register</a>
+            {signInHeader}
+            {signInButton}
+            {signIntext}
+            <br/><br/>
           </div>
           <div className='mapContainer'>
-            <Map google={this.props.google}
-                style={{width: '100%', height: '100%', position: 'relative'}}
-                className={'map'}
-                zoom={14}
-                onClick={this.onMapClicked}
-                onDragend={this.onMapMoved}>
-              {Markers}
-              <InfoWindow
-                marker={this.state.activeMarker}
-                visible={this.state.showingInfoWindow}
-                onClose={this.onInfoWindowClose}>
-                  <div>
-                    <h2>{this.state.selectedPlace.company}</h2>
-                    <h3>{this.state.selectedPlace.jobtitle}</h3>
-                    <h4>{this.state.selectedPlace.snippet}</h4>
-                    <div><a href={this.state.selectedPlace.url}>Click to View</a></div>
-                  </div>
-              </InfoWindow>
-            </Map>
+          <Map google={this.props.google}
+              style={{width: '100%', height: '100%', position: 'relative'}}
+              className={'map'}
+              zoom={14}
+              onClick={this.onMapClicked}
+              onDragend={this.onMapMoved}>
+            {Markers}
+            <InfoWindow
+              marker={this.state.activeMarker}
+              visible={this.state.showingInfoWindow}
+              onClose={this.onInfoWindowClose}>
+                <div>
+                  <h2>{this.state.selectedPlace.company}</h2>
+                  <h3>{this.state.selectedPlace.jobtitle}</h3>
+                  <h4>{this.state.selectedPlace.snippet}</h4>
+                  <div><a href={this.state.selectedPlace.url}>Click to View</a></div>
+              </div>
+            </InfoWindow>
+          </Map>
           </div>
         </div>
       </div>
     );
-    }
   }
 }
 
