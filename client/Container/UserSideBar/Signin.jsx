@@ -27,7 +27,7 @@ export default class Signin extends Component {
 
   handleSuccess() {
     this.setState({message: 'Great! You are signed in'});
-    this.props.LogInUser();
+    this.props.LogInUser(this.state.currentUsername);
   }
 
   handleSubmit(e) {

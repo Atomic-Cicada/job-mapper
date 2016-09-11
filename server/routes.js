@@ -17,6 +17,14 @@ module.exports = (app, express) => {
     userdbController.signIn(req, res);
   });
 
+  app.post('/addJob', function(req, res) {
+    userdbController.addJob(req, res);
+  });
+
+  app.post('/getJobs', function(req, res) {
+    userdbController.getJobs(req, res);
+  });
+
   app.get('/logout', function(req, res) {
     req.session.destroy(function() {
       res.redirect('index');

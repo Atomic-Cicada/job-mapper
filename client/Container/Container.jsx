@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import Map, {GoogleApiWrapper} from 'google-maps-react';
 import Marker from 'google-maps-react/dist/components/Marker.js';
 import InfoWindow from 'google-maps-react/dist/components/InfoWindow.js';
-import SearchBar from './SearchBar.jsx';
-import UserHome from './UserHome.jsx';
-import UserSideBar from './UserSideBar.jsx';
+import SearchBar from './SearchBar/SearchBar.jsx';
+import UserHome from './UserHome/UserHome.jsx';
+import UserSideBar from './UserSideBar/UserSideBar.jsx';
 
 
 export class Container extends React.Component {
@@ -17,13 +17,15 @@ export class Container extends React.Component {
       selectedPlace: {},
       markers: [],
       register: false,
-      loggedIn: false
+      loggedIn: false,
+      username: ''
     };
     this.onMarkerClick = this.onMarkerClick.bind(this);
     this.onInfoWindowClose = this.onInfoWindowClose.bind(this);
     this.setMarkers = this.setMarkers.bind(this);
     this.onMapClicked = this.onMapClicked.bind(this);
     this.LogInUser = this.LogInUser.bind(this);
+    this.LogOutUser = this.LogOutUser.bind(this);
   }
 
   onMarkerClick(props, marker, e) {
@@ -56,8 +58,14 @@ export class Container extends React.Component {
     });
   }
 
-  LogInUser(e) {
+  LogInUser(username) {
+    this.setState({username: username});
     this.setState({loggedIn: true});
+  }
+
+  LogOutUser() {
+    this.setState({loggedIn: false});
+    this.setState({username: ''});
   }
 
   render() {
@@ -74,7 +82,12 @@ export class Container extends React.Component {
             position={{lat: marker['lat'], lng: marker['lng']}} />
         ));
 
-    let sideBar = this.state.loggedIn ? <UserHome /> : <UserSideBar LogInUser={this.LogInUser}/>;
+    let sideBar;
+    if (this.state.loggedIn) {
+      sideBar = <UserHome selected={this.state.selectedPlace} username={this.state.username} LogOutUser={this.LogOutUser}/>;
+    } else {
+      sideBar = <UserSideBar LogInUser={this.LogInUser}/>;
+    } 
 
     return (
       <div className='application'>
