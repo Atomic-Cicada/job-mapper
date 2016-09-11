@@ -9,7 +9,8 @@
     "dbworker": "node ./server/database/jobs/dbworker.js",
     "start": "node ./server/server.js",
     "postinstall": "npm run build",
-    "build": "./node_modules/.bin/webpack --progress --colors"
+    "build": "./node_modules/.bin/webpack --progress --colors",
+    "nodemon": "nodemon ./server/server.js"
   },
   "repository": {
     "type": "git",

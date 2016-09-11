@@ -3,8 +3,6 @@
 let User = require('./userschema.js');
 let bcrypt = require('bcryptjs');
 
-
-
 module.exports = {
 
   addOne: (req, res) => {
@@ -17,18 +15,21 @@ module.exports = {
           salt: salt
         });
         console.log(req.body);
-        User.count({ username: req.body.currentUsername }, function (err, count) {
+        User.count({ username: req.body.currentUsername }, function(err, count) {
           // First we check to see if the username is already taken
           // Count is faster than the find() function- there is no need to return the existing user from the db
           if (count > 0) {
-            res.status(300).send('Sorry username already taken!!');
+            res.status(300)
+              .send('Sorry username already taken!!');
           } else {
             user.save(function(err) {
               if (err) {
                 return console.error('here is the error', err);
               }
-            }).then((results) => {
-              res.status(200).send(JSON.stringify(results));
+            })
+            .then((results) => {
+              res.status(200)
+                .send(JSON.stringify(results));
             });
           }
         });
@@ -56,11 +57,13 @@ module.exports = {
               res.redirect('/');
             });
           } else {
-            res.status(305).send('Sorry seems that is an incorrect password');
+            res.status(305)
+              .send('Sorry seems that is an incorrect password');
           }
         });
       } else {
-        res.status(300).send('Sorry that username does not exist');
+        res.status(300)
+          .send('Sorry that username does not exist');
       }
     });
   }

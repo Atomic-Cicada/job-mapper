@@ -3,7 +3,6 @@
 let request = require('request');
 let rp = require('request-promise');
 
-
 module.exports = {
   queryBuilder: (queryVar, locationVar, limitVar, startVar) => {
     /////////////////////////////////
@@ -41,7 +40,7 @@ module.exports = {
     // --------------------- //
     // PARAMETERS NOT IN USE //
     // --------------------- //
-    
+
     /*
     // callback  Callback. The name of a javascript function to use as a callback to which the results of the search are passed. This only applies when format=json. For security reasons, the callback name is restricted letters, numbers, and the underscore character.
     let callback = '&callback=' + '';
@@ -60,7 +59,6 @@ module.exports = {
     // sort  Sort by relevance or date. Default is relevance.
     let sort = '&sort=' + 'date';
     */
-    
 
     // Built out URL from parameters
     let params = publisher + version + format + query + loc + latlong + co + userIp + userAgent + limit + start + fromAge;
