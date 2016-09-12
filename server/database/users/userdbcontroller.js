@@ -83,10 +83,11 @@ module.exports = {
     let username = req.body.username;
     let job = req.body.job;
     User.findOneAndUpdate(
-      { username: username }, 
+      { username: username },
       { $push: {savedJobs: job} },
       function(err, model) {
         if (err) { console.log(err); }
+        res.sendStatus(200);
       });
   },
 
@@ -95,10 +96,11 @@ module.exports = {
     let username = req.body.username;
     let foundIndex;
     User.findOneAndUpdate(
-      { username: username }, 
+      { username: username },
       { $pull: {savedJobs: {jobkey: jobkey} } },
       function(err, model) {
         if (err) { console.log(err); }
+        res.sendStatus(200);
       });
   }
 
