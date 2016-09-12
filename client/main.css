@@ -4,7 +4,7 @@ html, body, #app, .application, .overallContainer, #app>div {
 
 body {
   margin: 0px;
-	font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 input {
@@ -13,7 +13,7 @@ input {
   border-radius: 5px;
 }
 
-textarea:focus, input:focus{
+textarea:focus, input:focus {
   outline: none;
 }
 
@@ -33,7 +33,7 @@ h3, h4 {
 }
 
 #search-bar {
-  display:flex;
+  display: flex;
   min-height: 86px;
   padding-left: 15px;
   border: 1px solid rgb(200, 200, 200);
@@ -63,7 +63,7 @@ h3, h4 {
 .sidebar {
   flex: 1;
   display: flex;
-	flex-direction: column;
+  flex-direction: column;
   background: #f8f8f8;
 }
 
@@ -78,10 +78,10 @@ h3, h4 {
 }
 
 .savedjobs {
-	overflow-y: scroll;
+  overflow-y: auto;
 }
 
-.sidebar > div {
+.sidebar>div {
   padding: 10px;
 }
 

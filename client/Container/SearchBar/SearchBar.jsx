@@ -2,7 +2,6 @@ import React, {PropTypes, Component} from 'react';
 
 export default class SearchBar extends Component {
 
-
   constructor(props) {
     super(props);
     this.state = {
@@ -17,16 +16,13 @@ export default class SearchBar extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    let myHeaders = new Headers({
-      'Content-Type': 'application/json; charset=utf-8'
-    });
+    let myHeaders = new Headers({'Content-Type': 'application/json; charset=utf-8'});
     let options = {
       method: 'POST',
       headers: myHeaders,
-      body: JSON.stringify({ job: this.state.currentJob, city: this.state.currentCity }),
+      body: JSON.stringify({job: this.state.currentJob, city: this.state.currentCity})
     };
-    fetch('/indeed', options).
-    then((response) => {
+    fetch('/indeed', options).then((response) => {
       return response.json().then((data) => {
         var markers = [];
         data.forEach(function(job) {
@@ -43,10 +39,7 @@ export default class SearchBar extends Component {
         });
         this.props.setMarkers(markers);
       });
-
-
-    })
-    .catch((error) => {
+    }).catch((error) => {
       console.log('There has been a problem with your fetch operation: ' + error.message);
     });
   }
@@ -54,6 +47,7 @@ export default class SearchBar extends Component {
   handleJobSearch(e) {
     this.setState({currentJob: e.target.value});
   }
+  
   handleCitySearch(e) {
     this.setState({currentCity: e.target.value});
   }
@@ -61,17 +55,15 @@ export default class SearchBar extends Component {
   render() {
     return (
       <div id='search-bar'>
-      <h1>JobMapper</h1>
-      <div className='search-div'>
-        <form onSubmit={this.handleSubmit.bind(this)}>
-
+        <h1>JobMapper</h1>
+        <div className='search-div'>
+          <form onSubmit={this.handleSubmit.bind(this)}>
             <input className='search-box' type="text" name="job" value={this.state.currentJob} placeholder='Search Job' onChange={this.handleJobSearch}/>
-            </form>
-            
-          </div>
-          {/* <div className='searchLabel'>
-            City:<input type="text" name="city" value={this.state.currentCity} onChange={this.handleCitySearch} />
-          </div> */}
+          </form>
+        </div>
+        {/* <div className='searchLabel'>
+        City:<input type="text" name="city" value={this.state.currentCity} onChange={this.handleCitySearch} />
+      </div> */}
       </div>
     );
   }

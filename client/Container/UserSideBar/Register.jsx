@@ -22,26 +22,20 @@ export default class Register extends Component {
     this.passwordTest = this.passwordTest.bind(this);
   }
 
-
   addUser() {
-    let myHeaders = new Headers({
-      'Content-Type': 'application/json; charset=utf-8'
-    });
+    let myHeaders = new Headers({'Content-Type': 'application/json; charset=utf-8'});
     let options = {
       method: 'POST',
       headers: myHeaders,
-      body: JSON.stringify({ currentUsername: this.state.currentUsername,
-        currentPassword: this.state.currentPassword })
+      body: JSON.stringify({currentUsername: this.state.currentUsername, currentPassword: this.state.currentPassword})
     };
-    fetch('/users', options).
-    then((response) => {
+    fetch('/users', options).then((response) => {
       if (response.ok) {
         this.handleSuccess();
       } else {
         this.rejectUserTakenUsername();
       }
-    })
-    .catch((error) => {
+    }).catch((error) => {
       console.log('There has been a problem with your fetch operation: ' + error.message);
     });
   }
@@ -95,8 +89,8 @@ export default class Register extends Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <div>Username<br/><input type="text" name="username" value={this.state.currentUsername} onChange={this.handleUsernameInput}/></div>
-          <div>Password<br/><input type="password" name="password" value={this.state.currentPassword} onChange={this.handlePasswordInput} /></div>
-          <div>Confirm Password<input type="password" name="password confirm" value={this.state.currentConfirmation} onChange={this.handleConfirmPasswordInput} /></div>
+          <div>Password<br/><input type="password" name="password" value={this.state.currentPassword} onChange={this.handlePasswordInput}/></div>
+          <div>Confirm Password<input type="password" name="password confirm" value={this.state.currentConfirmation} onChange={this.handleConfirmPasswordInput}/></div>
           <br/>
           <input type="submit" name="submit"/>
           <br/>
