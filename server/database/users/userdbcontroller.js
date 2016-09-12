@@ -12,9 +12,9 @@ module.exports = {
         var user = new User({
           username: req.body.currentUsername,
           password: hash,
+          savedJobs: [],
           salt: salt
         });
-        console.log(req.body);
         User.count({ username: req.body.currentUsername }, function(err, count) {
           // First we check to see if the username is already taken
           // Count is faster than the find() function- there is no need to return the existing user from the db
@@ -49,7 +49,6 @@ module.exports = {
         // here we are comparing the password the user entered to what we have hashed in our db
         // 'test' will either return true or false depending on whether the entered password is matching up
         bcrypt.compare(password, foundUser.password, function(err, test) {
-          console.log('looks like we found Mr. Kwan', test);
           if (test) {
             // Here we are creating a session.
             req.session.regenerate(function() {
@@ -66,6 +65,29 @@ module.exports = {
           .send('Sorry that username does not exist');
       }
     });
+  },
+
+  getJobs: (req, res) => {
+    var username = req.body.username;
+    User.findOne({ username: username }, function(err, foundUser) {
+      if (foundUser) {
+        res.send(foundUser.savedJobs);
+      } else {
+        res.status(300)
+          .send('Sorry that username does not exist');
+      }
+    });
+  },
+
+  addJob: (req, res) => {
+    let username = req.body.username;
+    let job = req.body.job;
+    User.findOneAndUpdate(
+      { username: username }, 
+      { $push: {savedJobs: job} },
+      function(err, model) {
+        if (err) { console.log(err); }
+      });
   }
 
 };
