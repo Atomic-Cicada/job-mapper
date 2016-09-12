@@ -28,7 +28,7 @@ export class Container extends React.Component {
     this.LogOutUser = this.LogOutUser.bind(this);
   }
 
-  // open info window and set state for selected marker
+  // open info window and set state for selected map marker
   onMarkerClick(props, marker, e) {
     this.setState({
       selectedPlace: props,
@@ -37,7 +37,7 @@ export class Container extends React.Component {
     });
   }
 
-  // close info window
+  // close info window for selected map marker
   onInfoWindowClose() {
     this.setState({
       showingInfoWindow: false,
@@ -73,7 +73,7 @@ export class Container extends React.Component {
   }
 
   render() {
-    // puts the current state of markers into an array that can be rendered
+    // puts the current state of map markers into an array that can be rendered
     const Markers =
         this.state.markers
         .map((marker, index) => (

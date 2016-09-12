@@ -78,7 +78,6 @@ export default class UserHome extends Component {
 
   // removes selected job from user's saved jobs
   removeJob(jobkey) {
-    event.preventDefault();
     let myHeaders = new Headers({
       'Content-Type': 'application/json; charset=utf-8'
     });
@@ -99,7 +98,7 @@ export default class UserHome extends Component {
 
 
   render() {
-    // puts the current state of markers into an array that can be rendered
+    // puts the current state of map markers into an array that can be rendered
     const Jobs =
         this.state.jobs
         .map((job, index) => (
