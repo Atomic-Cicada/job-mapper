@@ -98,7 +98,9 @@ export default class Register extends Component {
           <div>Password<br/><input type="password" name="password" value={this.state.currentPassword} onChange={this.handlePasswordInput} /></div>
           <div>Confirm Password<input type="password" name="password confirm" value={this.state.currentConfirmation} onChange={this.handleConfirmPasswordInput} /></div>
           <br/>
-          <input type="submit" name="submit"/>
+          <div className='input-button-div'>
+            <input type="submit" name="submit" className='input-button'/>
+          </div>
           <br/>
           <p>{this.state.message}</p>
         </form>

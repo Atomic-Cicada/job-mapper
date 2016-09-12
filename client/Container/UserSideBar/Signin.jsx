@@ -69,7 +69,9 @@ export default class Signin extends Component {
           <div>Username<br/><input type="text" name="username" value={this.state.currentUsername} onChange={this.handleUsernameInput}/></div>
           <div>Password<br/><input type="password" name="password" value={this.state.currentPassword} onChange={this.handlePasswordInput} /></div>
           <br/>
-          <input type="submit" name="submit"/>
+          <div className='input-button-div'>
+            <input type="submit" name="submit" className='input-button'/>
+          </div>
           <br/>
           <p>{this.state.message}</p>
         </form>
