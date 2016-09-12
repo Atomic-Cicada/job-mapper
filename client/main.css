@@ -42,6 +42,7 @@ h3, h4 {
 .search-box {
   width: 300px;
   height: 20px;
+  padding-left: 7px;
 }
 
 .application {
@@ -71,6 +72,15 @@ h3, h4 {
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
   text-align: center;
+  background: #3288c4;
+  border-color: #3288c4;
+  margin: 10px 30px 10px 30px;
+  border-radius: 5px;
+  text-decoration: none;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .login {
@@ -82,10 +92,19 @@ h3, h4 {
 }
 
 .sidebar>div {
-  padding: 10px;
+  padding: 10px 10px 0 10px;
 }
 
 .savedjobs {
   font-size: 80%;
   padding: 0 10px 0 10px;
+}
+
+.infowindow {
+  width: 400px;
+}
+
+.button {
+  text-decoration: none;
+  color: white;
 }

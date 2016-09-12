@@ -25,7 +25,7 @@ export default class SearchBar extends Component {
     fetch('/indeed', options).then((response) => {
       return response.json().then((data) => {
         var markers = [];
-        data.forEach(function(job) {
+        data.forEach((job) => {
           var marker = {
             lat: job.latitude,
             lng: job.longitude,
@@ -47,7 +47,7 @@ export default class SearchBar extends Component {
   handleJobSearch(e) {
     this.setState({currentJob: e.target.value});
   }
-  
+
   handleCitySearch(e) {
     this.setState({currentCity: e.target.value});
   }
