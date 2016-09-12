@@ -22,4 +22,3 @@ Fun Ideas:
 - Historical listings (see all listings in SF in 2000 vs 2016 )
 - Heatmaps
 
-
