@@ -6,6 +6,7 @@ let path = require('path');
 let parser = require('body-parser');
 let db = require('./database/index.js');
 let session = require('express-session');
+let favicon = require('serve-favicon');
 let app = express();
 
 // Leaving these commented here because we may want to use them for more
@@ -20,6 +21,7 @@ app.use(session({
 
 app.use(parser.json());
 app.use(express.static(path.join(__dirname + '/../client/public')));
+app.use(favicon(__dirname + '/../client/public/favicon.ico'));
 
 require('./routes.js')(app, express);
 
