@@ -15,13 +15,16 @@ export default class UserHome extends Component {
   }
 
   getJobs() {
-    let myHeaders = new Headers({'Content-Type': 'application/json; charset=utf-8'});
+    let myHeaders = new Headers({
+      'Content-Type': 'application/json; charset=utf-8'
+    });
     let options = {
       method: 'POST',
       headers: myHeaders,
-      body: JSON.stringify({username: this.props.username})
+      body: JSON.stringify({ username: this.props.username}),
     };
-    fetch('/getJobs', options).then((response) => {
+    fetch('/getJobs', options).
+    then((response) => {
       return response.json().then((data) => {
         var jobs = [];
         data.forEach(function(item) {
@@ -36,7 +39,8 @@ export default class UserHome extends Component {
         });
         this.setState({jobs: jobs});
       });
-    }).catch((error) => {
+    })
+    .catch((error) => {
       console.log('There has been a problem with your fetch operation: ' + error.message);
     });
   }
@@ -49,17 +53,21 @@ export default class UserHome extends Component {
       url: this.props.selected.url,
       jobkey: this.props.selected.jobkey
     };
-    let myHeaders = new Headers({'Content-Type': 'application/json; charset=utf-8'});
+    let myHeaders = new Headers({
+      'Content-Type': 'application/json; charset=utf-8'
+    });
     let options = {
       method: 'POST',
       headers: myHeaders,
-      body: JSON.stringify({job: job, username: this.props.username})
+      body: JSON.stringify({ job: job, username: this.props.username}),
     };
-    fetch('/addJob', options).then((response) => {
+    fetch('/addJob', options).
+    then((response) => {
       return response.json().then((data) => {
         console.log(data);
       });
-    }).catch((error) => {
+    })
+    .catch((error) => {
       console.log('There has been a problem with your fetch operation: ' + error.message);
     });
     this.getJobs();
@@ -67,24 +75,40 @@ export default class UserHome extends Component {
 
   removeJob(jobkey) {
     event.preventDefault();
-    let myHeaders = new Headers({'Content-Type': 'application/json; charset=utf-8'});
+    let myHeaders = new Headers({
+      'Content-Type': 'application/json; charset=utf-8'
+    });
     let options = {
       method: 'POST',
       headers: myHeaders,
       body: JSON.stringify({jobkey: jobkey, username: this.props.username})
     };
-    fetch('/removeJob', options).then((response) => {
+    fetch('/removeJob', options).
+    then((response) => {
       return response.json().then((data) => {
         console.log(data);
       });
-    }).catch((error) => {
+    })
+    .catch((error) => {
       console.log('There has been a problem with your fetch operation: ' + error.message);
     });
     this.getJobs();
   }
 
+
   render() {
-    const Jobs = this.state.jobs.map((job, index) => (<SavedJob key={index} company={job.company} jobtitle={job.jobtitle} snippet={job.snippet} url={job.url} jobkey={job.jobkey} removeJob={this.removeJob}/>));
+    const Jobs =
+        this.state.jobs
+        .map((job, index) => (
+          <SavedJob
+            key={index}
+            company={job.company}
+            jobtitle={job.jobtitle}
+            snippet={job.snippet}
+            url={job.url}
+            jobkey={job.jobkey}
+            removeJob={this.removeJob} />
+        ));
     return (
       <div className='sidebar'>
         <div className='sidebarheaders'>

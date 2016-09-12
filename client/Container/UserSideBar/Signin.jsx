@@ -32,13 +32,16 @@ export default class Signin extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    let myHeaders = new Headers({'Content-Type': 'application/json; charset=utf-8'});
+    let myHeaders = new Headers({
+      'Content-Type': 'application/json; charset=utf-8'
+    });
     let options = {
       method: 'POST',
       headers: myHeaders,
-      body: JSON.stringify({username: this.state.currentUsername, password: this.state.currentPassword})
+      body: JSON.stringify({ username: this.state.currentUsername, password: this.state.currentPassword })
     };
-    fetch('/login', options).then((response) => {
+    fetch('/login', options).
+    then((response) => {
       if (response.status === 305) {
         this.rejectSignInWrongPassword();
       } else if (response.status === 300) {
@@ -46,7 +49,8 @@ export default class Signin extends Component {
       } else {
         this.handleSuccess();
       }
-    }).catch((error) => {
+    })
+    .catch((error) => {
       console.log('There has been a problem with your fetch operation: ' + error.message);
     });
   }
@@ -63,7 +67,7 @@ export default class Signin extends Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <div>Username<br/><input type="text" name="username" value={this.state.currentUsername} onChange={this.handleUsernameInput}/></div>
-          <div>Password<br/><input type="password" name="password" value={this.state.currentPassword} onChange={this.handlePasswordInput}/></div>
+          <div>Password<br/><input type="password" name="password" value={this.state.currentPassword} onChange={this.handlePasswordInput} /></div>
           <br/>
           <input type="submit" name="submit"/>
           <br/>
