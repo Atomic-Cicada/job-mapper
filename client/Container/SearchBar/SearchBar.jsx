@@ -14,6 +14,8 @@ export default class SearchBar extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  // takes text from search bar and queries database for matching results
+  // makes an array of markers that are to be passed to setMarkers
   handleSubmit(e) {
     e.preventDefault();
     let myHeaders = new Headers({'Content-Type': 'application/json; charset=utf-8'});
@@ -58,7 +60,8 @@ export default class SearchBar extends Component {
         <h1>JobMapper</h1>
         <div className='search-div'>
           <form onSubmit={this.handleSubmit.bind(this)}>
-            <input className='search-box' type="text" name="job" value={this.state.currentJob} placeholder='Search Job' onChange={this.handleJobSearch}/>
+            <input className='search-box' type="text" name="job" value={this.state.currentJob} placeholder='Search Job
+            ' onChange={this.handleJobSearch}/>
           </form>
         </div>
         {/* <div className='searchLabel'>

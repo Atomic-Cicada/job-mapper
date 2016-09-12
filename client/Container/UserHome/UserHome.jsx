@@ -10,11 +10,14 @@ export default class UserHome extends Component {
     this.removeJob = this.removeJob.bind(this);
   }
 
+  // displays saved jobs on login
   componentDidMount() {
     this.getJobs();
   }
 
+  // display saved jobs for logged in user
   getJobs() {
+    console.log('get jobs');
     let myHeaders = new Headers({
       'Content-Type': 'application/json; charset=utf-8'
     });
@@ -26,6 +29,7 @@ export default class UserHome extends Component {
     fetch('/getJobs', options).
     then((response) => {
       return response.json().then((data) => {
+        // creates array of job objects from returned data
         var jobs = [];
         data.forEach(function(item) {
           var job = {
@@ -37,6 +41,7 @@ export default class UserHome extends Component {
           };
           jobs.push(job);
         });
+        // sets state of displayed saved jobs
         this.setState({jobs: jobs});
       });
     })
@@ -45,6 +50,7 @@ export default class UserHome extends Component {
     });
   }
 
+  // adds currently selected job on map to user's saved jobs
   addJob() {
     var job = {
       company: this.props.selected.company,
@@ -62,31 +68,37 @@ export default class UserHome extends Component {
       body: JSON.stringify({ job: job, username: this.props.username}),
     };
     fetch('/addJob', options)
+    .then(() => {
+      this.getJobs();
+    })
     .catch((error) => {
       console.log('There has been a problem with your fetch operation: ' + error.message);
     });
-    this.getJobs();
   }
 
+  // removes selected job from user's saved jobs
   removeJob(jobkey) {
-    event.preventDefault();
     let myHeaders = new Headers({
       'Content-Type': 'application/json; charset=utf-8'
     });
     let options = {
       method: 'POST',
       headers: myHeaders,
+      // jobkey is passed in to find correct job in savedjobs array
       body: JSON.stringify({jobkey: jobkey, username: this.props.username})
     };
     fetch('/removeJob', options)
+    .then(() => {
+      this.getJobs();
+    })
     .catch((error) => {
       console.log('There has been a problem with your fetch operation: ' + error.message);
     });
-    this.getJobs();
   }
 
 
   render() {
+    // puts the current state of map markers into an array that can be rendered
     const Jobs =
         this.state.jobs
         .map((job, index) => (
@@ -104,9 +116,9 @@ export default class UserHome extends Component {
         <div className='sidebarheaders'>
           <a onClick={this.props.LogOutUser.bind(this)} href='#'>Logout</a>
           <hr></hr>
-          Saved Jobs
+            <a onClick={this.addJob.bind(this)} href='#'>Save Selected Job</a>
           <hr></hr>
-          <a onClick={this.addJob.bind(this)} href='#'>Add Job to List</a>
+          <h2>Saved Jobs</h2>
           <hr></hr>
         </div>
         <div className='savedjobs'>

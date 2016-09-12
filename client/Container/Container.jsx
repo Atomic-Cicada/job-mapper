@@ -28,6 +28,7 @@ export class Container extends React.Component {
     this.LogOutUser = this.LogOutUser.bind(this);
   }
 
+  // open info window and set state for selected map marker
   onMarkerClick(props, marker, e) {
     this.setState({
       selectedPlace: props,
@@ -36,6 +37,7 @@ export class Container extends React.Component {
     });
   }
 
+  // close info window for selected map marker
   onInfoWindowClose() {
     this.setState({
       showingInfoWindow: false,
@@ -43,6 +45,7 @@ export class Container extends React.Component {
     });
   }
 
+  // closes open info window if map is clicked on
   onMapClicked(props) {
     if (this.state.showingInfoWindow) {
       this.setState({
@@ -52,6 +55,7 @@ export class Container extends React.Component {
     }
   }
 
+  // set state of current array of markers
   setMarkers(markerArray) {
     this.setState({
       markers: markerArray
@@ -69,6 +73,7 @@ export class Container extends React.Component {
   }
 
   render() {
+    // puts the current state of map markers into an array that can be rendered
     const Markers =
         this.state.markers
         .map((marker, index) => (
@@ -83,6 +88,7 @@ export class Container extends React.Component {
             position={{lat: marker['lat'], lng: marker['lng']}} />
         ));
 
+    // if user is logged in, side bar changes to logged in view
     let sideBar;
     if (this.state.loggedIn) {
       sideBar = <UserHome selected={this.state.selectedPlace} username={this.state.username} LogOutUser={this.LogOutUser}/>;
@@ -92,17 +98,24 @@ export class Container extends React.Component {
 
     return (
       <div className='application'>
+        {/* SearchBar will pass data to setMarkers */}
         <SearchBar setMarkers={this.setMarkers}/>
         <div className='overallContainer'>
+          {/* sideBar contains signin/register and logged in components*/}
           {sideBar}
           <div className='mapContainer'>
+        {/* Google Maps component */}
           <Map google={this.props.google}
               style={{width: '100%', height: '100%', position: 'relative'}}
               className={'map'}
               zoom={14}
               onClick={this.onMapClicked}
               onDragend={this.onMapMoved}>
+
+            {/* array of current markers imported to map */}
             {Markers}
+
+            {/* InfoWindow on marker click*/}
             <InfoWindow
               marker={this.state.activeMarker}
               visible={this.state.showingInfoWindow}
@@ -122,6 +135,9 @@ export class Container extends React.Component {
   }
 }
 
+// this imports the use of google maps api
+// the Container component is wrapped with it
+// this allows the use of google maps api functions
 export default GoogleApiWrapper({
   apiKey: process.env.GOOGLE_MAPS_API_KEY
 })(Container);

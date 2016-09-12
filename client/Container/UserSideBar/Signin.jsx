@@ -18,11 +18,11 @@ export default class Signin extends Component {
   }
 
   rejectSignInWrongPassword() {
-    this.setState({message: 'Sorry that is the wrong password'});
+    this.setState({message: 'Sorry, that password is not correct.'});
   }
 
   rejectSignInWrongUsername() {
-    this.setState({message: 'Sorry that username is not registered'});
+    this.setState({message: 'Sorry, that username is not registered.'});
   }
 
   handleSuccess() {
@@ -68,12 +68,13 @@ export default class Signin extends Component {
         <form onSubmit={this.handleSubmit}>
           <div>Username<br/><input type="text" name="username" value={this.state.currentUsername} onChange={this.handleUsernameInput}/></div>
           <div>Password<br/><input type="password" name="password" value={this.state.currentPassword} onChange={this.handlePasswordInput} /></div>
+          <div><br></br></div>
           <br/>
           <div className='input-button-div'>
             <input type="submit" name="submit" className='input-button'/>
           </div>
           <br/>
-          <p>{this.state.message}</p>
+          {this.state.message}
         </form>
       </div>
     );
