@@ -67,6 +67,7 @@ module.exports = {
     });
   },
 
+  // look up username and return saved jobs array
   getJobs: (req, res) => {
     var username = req.body.username;
     User.findOne({ username: username }, (err, foundUser) => {
@@ -79,6 +80,7 @@ module.exports = {
     });
   },
 
+  // look up username and adds a job to saved jobs array
   addJob: (req, res) => {
     let username = req.body.username;
     let job = req.body.job;
@@ -91,6 +93,7 @@ module.exports = {
       });
   },
 
+  // look up username and removes job from saved jobs array
   removeJob: (req, res) => {
     let jobkey = req.body.jobkey;
     let username = req.body.username;

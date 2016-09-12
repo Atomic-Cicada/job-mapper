@@ -23,6 +23,8 @@ export default class UserSideBar extends React.Component {
     let signInHeader;
     let signInButton;
     let signIntext;
+
+    // register and signin toggle
     if (this.state.register) {
       signInHeader = <h2>Register:</h2>;
       signInButton = <Register/>;
