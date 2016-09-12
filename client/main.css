@@ -26,9 +26,8 @@ input {
 }
 
 .mapContainer {
-  flex:3;
+  flex:4;
 	position: relative;
-	overflow: auto;
 }
 
 .header {
