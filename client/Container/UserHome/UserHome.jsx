@@ -7,6 +7,7 @@ export default class UserHome extends Component {
     this.state = {
       jobs: []
     };
+    this.removeJob = this.removeJob.bind(this);
   }
 
   componentDidMount() {
@@ -70,6 +71,26 @@ export default class UserHome extends Component {
     this.getJobs();
   }
 
+  removeJob() {
+    console.log('remove job');
+    // let myHeaders = new Headers({
+    //   'Content-Type': 'application/json; charset=utf-8'
+    // });
+    // let options = {
+    //   method: 'POST',
+    //   headers: myHeaders,
+    // };
+    // fetch('/removeJob', options).
+    // then((response) => {
+    //   return response.json().then((data) => {
+    //     console.log(data);
+    //   });
+    // })
+    // .catch((error) => {
+    //   console.log('There has been a problem with your fetch operation: ' + error.message);
+    // });
+  }
+
 
   render() {
     const Jobs =
@@ -80,7 +101,8 @@ export default class UserHome extends Component {
             company={job.company}
             jobtitle={job.jobtitle}
             snippet={job.snippet}
-            url={job.url} />
+            url={job.url}
+            removeJob={this.removeJob} />
         ));
     return (
       <div className='header'>
