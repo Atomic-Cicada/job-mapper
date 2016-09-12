@@ -68,11 +68,7 @@ module.exports = {
     });
   },
 
-<<<<<<< c67ef934c3867a85f2be8e30dd345a4952dbf004
-  // look up username and return saved jobs array
-=======
   // this loads up the user's favorite's list when they login
->>>>>>> Have comments on the userdbcontroller functions
   getJobs: (req, res) => {
     var username = req.body.username;
     User.findOne({ username: username }, (err, foundUser) => {
