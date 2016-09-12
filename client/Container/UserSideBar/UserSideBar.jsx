@@ -24,20 +24,22 @@ export default class UserSideBar extends React.Component {
     let signInButton;
     let signIntext;
     if (this.state.register) {
-      signInHeader = <h1>Register:</h1>;
+      signInHeader = <h2>Register:</h2>;
       signInButton = <Register />;
-      signIntext = <a onClick={this.handleSignIn.bind(this)} href='#'>Already have an account? Sign in here</a>;
+      signIntext = <a className='sign-in-register-btn' onClick={this.handleSignIn.bind(this)} href='#'>Already have an account? Sign in here</a>;
     } else {
-      signInHeader = <h1>Sign in:</h1>;
+      signInHeader = <h2>Sign in:</h2>;
       signInButton = <Signin LogInUser={this.props.LogInUser}/>;
-      signIntext = <a onClick={this.handleRegister.bind(this)} href='#'>Register</a>;
+      signIntext = <a className='sign-in-register-btn' onClick={this.handleRegister.bind(this)} href='#'>Register</a>;
     }
 
     return (
-      <div className='header'>
+      <div className='sidebar'>
         {signIntext}
-        {signInHeader}
-        {signInButton}
+        <div className='login'>
+          {signInHeader}
+          {signInButton}
+        </div>
       </div>
     );
   }

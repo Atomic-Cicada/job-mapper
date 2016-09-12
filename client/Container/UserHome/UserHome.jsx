@@ -110,14 +110,18 @@ export default class UserHome extends Component {
             removeJob={this.removeJob} />
         ));
     return (
-      <div className='header'>
-        <a onClick={this.props.LogOutUser.bind(this)} href='#'>Logout</a>
-        <hr></hr>
-        Saved Jobs
-        <hr></hr>
-        <a onClick={this.addJob.bind(this)} href='#'>Add Job to List</a>;
-        <hr></hr>
-        {Jobs}
+      <div className='sidebar'>
+        <div className='sidebarheaders'>
+          <a onClick={this.props.LogOutUser.bind(this)} href='#'>Logout</a>
+          <hr></hr>
+          Saved Jobs
+          <hr></hr>
+          <a onClick={this.addJob.bind(this)} href='#'>Add Job to List</a>;
+          <hr></hr>
+        </div>
+        <div className='savedjobs'>
+          {Jobs}
+        </div>
       </div>
     );
   }

@@ -44,13 +44,13 @@ export default class SearchBar extends Component {
         this.props.setMarkers(markers);
       });
 
-      
+
     })
     .catch((error) => {
       console.log('There has been a problem with your fetch operation: ' + error.message);
     });
   }
-  
+
   handleJobSearch(e) {
     this.setState({currentJob: e.target.value});
   }
@@ -60,12 +60,18 @@ export default class SearchBar extends Component {
 
   render() {
     return (
-      <div id='SearchBar'>
+      <div id='search-bar'>
+      <h1>JobMapper</h1>
+      <div className='search-div'>
         <form onSubmit={this.handleSubmit.bind(this)}>
-          <div className='searchLabel'>Job Title:<input type="text" name="job" value={this.state.currentJob} onChange={this.handleJobSearch}/></div>
-          <div className='searchLabel'>City:<input type="text" name="city" value={this.state.currentCity} onChange={this.handleCitySearch} /></div>
-          <input type="submit" name="submit"/>
-        </form>
+
+            <input className='search-box' type="text" name="job" value={this.state.currentJob} placeholder='Search Job' onChange={this.handleJobSearch}/>
+            </form>
+            
+          </div>
+          {/* <div className='searchLabel'>
+            City:<input type="text" name="city" value={this.state.currentCity} onChange={this.handleCitySearch} />
+          </div> */}
       </div>
     );
   }
