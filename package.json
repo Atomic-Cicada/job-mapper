@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "./node_modules/.bin/mocha ./tests/server/specrunner.js --reporter nyan",
     "dev": "./node_modules/.bin/webpack -d -w --progress --colors",
     "dbworker": "node ./server/database/jobs/dbworker.js",
     "start": "node ./server/server.js",
@@ -43,7 +43,9 @@
     "webpack": "^1.13.2"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
     "css-loader": "^0.25.0",
+    "mocha": "^3.0.2",
     "style-loader": "^0.13.1"
   }
 }
