@@ -15,7 +15,7 @@ Maps job by precise location using a combination of the Indeed API and Google Pl
 ## Tech Stack
 M - MongoDB
 E - Express
-R - Reactor
+R - React
 N - Node
 
 ### Server
