@@ -13,17 +13,21 @@ Maps job by precise location using a combination of the Indeed API and Google Pl
   - __Development Team Member__: [Kevin Brosamle](https://github.com/kevinbrosamle)
 
 ## Tech Stack
+M - MongoDB
+E - Express
+R - Reactor
+N - Node
 
 ### Server
   - __Node__ - v6.4.0
-  - __Mongoose__ - 
-  - __Express__ -
+  - __Mongoose__ - ^4.6.0
+  - __Express__ - ^4.14.0
 
 ### Client
-  - __React__ -
+  - __React__ - ^15.3.1
 
 ### Development tools
-  - __webpack__ -
+  - __webpack__ - ^1.13.2
 
 
 ## Table of Contents
@@ -43,32 +47,42 @@ Maps job by precise location using a combination of the Indeed API and Google Pl
 - Node 6.4.0
 
 ## Development
+```
+npm run dev
+npm run nodemon
+```
 
 ### Installing Dependencies
+```
+npm install
+```
 
 ### Tasks
 
+```
+npm run dbworker
+```
+Runs worker to populate database with new jobs
+
 ## Suggested Improvements
 
-## Contributing
 Client Side:
 - Add City to Search
 - Have search filters (date added, etc)
 - Return additional results
 - Include User Profile page
 
-
 UX:
 - Check for taken username before the user plugs in password
-
 
 Performance:
 - Refactor components so that only top-level components utilize state. (Ex. all 3 UserSideBar components can be refactored for only 1 top level component to hold state)
 - Save query + city to database whenever user searches a city/query combo that has never been searched before
 
-
 Fun Ideas:
 - Historical listings (see all listings in SF in 2000 vs 2016 )
 - Heatmaps
+
+## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
