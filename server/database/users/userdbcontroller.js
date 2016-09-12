@@ -5,6 +5,7 @@ let bcrypt = require('bcryptjs');
 
 module.exports = {
 
+  // this registers a new user
   addOne: (req, res) => {
     bcrypt.genSalt(10, (err, salt) => {
       bcrypt.hash(req.body.currentPassword, salt, (err, hash) => {
@@ -67,7 +68,7 @@ module.exports = {
     });
   },
 
-  // look up username and return saved jobs array
+  // this loads up the user's favorite's list when they login
   getJobs: (req, res) => {
     var username = req.body.username;
     User.findOne({ username: username }, (err, foundUser) => {
@@ -80,7 +81,7 @@ module.exports = {
     });
   },
 
-  // look up username and adds a job to saved jobs array
+  // This adds a job to 'saved jobs' sidebar that user sees on homepage
   addJob: (req, res) => {
     let username = req.body.username;
     let job = req.body.job;
@@ -93,7 +94,7 @@ module.exports = {
       });
   },
 
-  // look up username and removes job from saved jobs array
+  // This removes a job from the 'saved jobs' sidebar
   removeJob: (req, res) => {
     let jobkey = req.body.jobkey;
     let username = req.body.username;
