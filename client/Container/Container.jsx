@@ -89,6 +89,8 @@ export class Container extends React.Component {
         ));
 
     // if user is logged in, side bar changes to logged in view
+    // The UserSideBar file includes all components which are rendered to non-logged in user
+    // The UserHome folder includes the components that are rendered to only logged in users
     let sideBar;
     if (this.state.loggedIn) {
       sideBar = <UserHome selected={this.state.selectedPlace} username={this.state.username} LogOutUser={this.LogOutUser}/>;

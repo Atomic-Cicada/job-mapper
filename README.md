@@ -23,6 +23,7 @@ N - Node
   - __Mongoose__ - ^4.6.0
   - __Express__ - ^4.14.0
 
+
 ### Client
   - __React__ - ^15.3.1
 
@@ -35,11 +36,10 @@ N - Node
 1. [Usage](#Usage)
 2. [Requirements](#requirements)
 3. [Development](#development)
-    1. [Installing Dependencies](#installing-dependencies)
-    2. [Tasks](#tasks)
-
-4. [Suggested Improvements](#suggested-improvements)
-5. [Contributing](#contributing)
+4. [Installing Dependencies](#installing-dependencies)
+5. [Tasks](#tasks)
+6. [Suggested Improvements](#suggested-improvements)
+7. [Contributing](#contributing)
 
 ## Usage
 
@@ -70,10 +70,10 @@ Client Side:
 - Add City to Search
 - Have search filters (date added, etc)
 - Return additional results
-- Include User Profile page
+- Include User Profile page (saved jobs, user settings, etc.)
 
 UX:
-- Check for taken username before the user plugs in password
+- Check for already registered username before the user plugs in password
 
 Performance:
 - Refactor components so that only top-level components utilize state. (Ex. all 3 UserSideBar components can be refactored for only 1 top level component to hold state)
@@ -82,6 +82,7 @@ Performance:
 Fun Ideas:
 - Historical listings (see all listings in SF in 2000 vs 2016 )
 - Heatmaps
+- Recommended jobs section (according to the previous jobs the user has saved)
 
 ## Contributing
 
