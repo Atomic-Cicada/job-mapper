@@ -116,7 +116,7 @@ export default class UserHome extends Component {
           <hr></hr>
           Saved Jobs
           <hr></hr>
-          <a onClick={this.addJob.bind(this)} href='#'>Add Job to List</a>;
+          <a onClick={this.addJob.bind(this)} href='#'>Add Job to List</a>
           <hr></hr>
         </div>
         <div className='savedjobs'>

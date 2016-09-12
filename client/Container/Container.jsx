@@ -107,10 +107,10 @@ export class Container extends React.Component {
               marker={this.state.activeMarker}
               visible={this.state.showingInfoWindow}
               onClose={this.onInfoWindowClose}>
-                <div>
-                  <h2>{this.state.selectedPlace.company}</h2>
-                  <h3>{this.state.selectedPlace.jobtitle}</h3>
-                  <h4>{this.state.selectedPlace.snippet}</h4>
+                <div className='infowindow'>
+                  <h3>{this.state.selectedPlace.company}</h3>
+                  <h4>{this.state.selectedPlace.jobtitle}</h4>
+                  <p>{this.state.selectedPlace.snippet}</p>
                   <div><a href={this.state.selectedPlace.url}>Click to View</a></div>
               </div>
             </InfoWindow>

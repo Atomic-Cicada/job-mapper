@@ -10,6 +10,7 @@ export default class SavedJob extends Component {
       <div>
         <h3>{this.props.company}</h3>
         <h4>{this.props.jobtitle}</h4>
+        <br/>
         <div>{this.props.snippet}</div>
         <div>
           <a href={this.props.url}>Link</a>

@@ -13,24 +13,24 @@ module.exports = (app, express) => {
     userdbController.addOne(req, res);
   });
 
-  app.post('/login', function(req, res) {
+  app.post('/login', (req, res) => {
     userdbController.signIn(req, res);
   });
 
-  app.post('/getJobs', function(req, res) {
+  app.post('/getJobs', (req, res) => {
     userdbController.getJobs(req, res);
   });
 
-  app.post('/addJob', function(req, res) {
+  app.post('/addJob', (req, res) => {
     userdbController.addJob(req, res);
   });
 
-  app.post('/removeJob', function(req, res) {
+  app.post('/removeJob', (req, res) => {
     userdbController.removeJob(req, res);
   });
 
-  app.get('/logout', function(req, res) {
-    req.session.destroy(function() {
+  app.get('/logout', (req, res) => {
+    req.session.destroy(() => {
       res.redirect('index');
     });
   });
