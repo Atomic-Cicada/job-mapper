@@ -36,10 +36,11 @@ N - Node
 1. [Usage](#Usage)
 2. [Requirements](#requirements)
 3. [Development](#development)
-4. [Installing Dependencies](#installing-dependencies)
-5. [Tasks](#tasks)
-6. [Suggested Improvements](#suggested-improvements)
-7. [Contributing](#contributing)
+  1. [Installing Dependencies](#installing-dependencies)
+  2. [Tasks](#tasks)
+
+4. [Suggested Improvements](#suggested-improvements)
+5. [Contributing](#contributing)
 
 ## Usage
 
