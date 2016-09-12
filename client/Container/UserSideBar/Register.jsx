@@ -8,9 +8,8 @@ export default class Register extends Component {
       currentUsername: '',
       currentPassword: '',
       currentConfirmation: '',
-      message: ''
+      message: ''// The message property is updated as a user is registering, depending on the status (whether their passwords add up, if username is taken, etc)
     };
-    // The message property is updated as a user is registering, depending on the status (whether their passwords add up, if username is taken, etc)
 
     this.rejectUserTakenUsername = this.rejectUserTakenUsername.bind(this);
     this.rejectUserBadPassword = this.rejectUserBadPassword.bind(this);
@@ -39,6 +38,7 @@ export default class Register extends Component {
       if (response.ok) {
         this.handleSuccess();
       } else {
+        // The only reason a user would not be added to the db is if that username already exists
         this.rejectUserTakenUsername();
       }
     })
@@ -72,8 +72,9 @@ export default class Register extends Component {
   // This handleSubmit function should be refactored to check for an already existing user before the user submits their password
   // not after they have done all the work of adding it, like it currently is.
   handleSubmit(e) {
+    // This just prevents the page from reloading which is the default action by the browser upon a form submit
     e.preventDefault();
-    // If the password is acceptable and the confirm matches original typed then add user
+    // Only adds a user if the password is acceptable
     if (this.passwordTest()) {
       this.addUser();
     } else {
@@ -81,6 +82,7 @@ export default class Register extends Component {
     }
   }
 
+  // These three functions actively set state properties as a user is typing into the registration form.
   handleUsernameInput(e) {
     this.setState({currentUsername: e.target.value});
   }

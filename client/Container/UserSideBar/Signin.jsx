@@ -6,7 +6,7 @@ export default class Signin extends Component {
     this.state = {
       currentUsername: '',
       currentPassword: '',
-      message: ''
+      message: '' // This will display the status message to the user (depending on whether passwords match up, correct username entered, etc)
     };
 
     this.handleUsernameInput = this.handleUsernameInput.bind(this);
