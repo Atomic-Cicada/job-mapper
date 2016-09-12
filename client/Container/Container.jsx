@@ -88,7 +88,7 @@ export class Container extends React.Component {
       sideBar = <UserHome selected={this.state.selectedPlace} username={this.state.username} LogOutUser={this.LogOutUser}/>;
     } else {
       sideBar = <UserSideBar LogInUser={this.LogInUser}/>;
-    } 
+    }
 
     return (
       <div className='application'>

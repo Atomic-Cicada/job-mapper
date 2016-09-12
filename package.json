@@ -40,6 +40,7 @@
     "react-dom": "^15.3.1",
     "request": "^2.74.0",
     "request-promise": "^4.1.1",
+    "serve-favicon": "^2.3.0",
     "webpack": "^1.13.2"
   },
   "devDependencies": {

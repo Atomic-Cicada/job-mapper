@@ -1,40 +1,91 @@
-html, body, #app, .application, .overallContainer, #app>div{
-	height:100%;
+html, body, #app, .application, .overallContainer, #app>div {
+  height: 100%;
 }
 
 body {
-	margin:0px
+  margin: 0px;
+  font-family: 'Open Sans', sans-serif;
 }
 
 input {
-	height: 25px;
-	width: 150px
+  background-color: #eeeeee;
+  border: 1px solid #eeeeee;
+  border-radius: 5px;
 }
 
-.searchLabel {
-  color: blue;
-  width: 150px;
-  margin: 10px;
-  font-size: 30px;
-  display: inline-block;
+textarea:focus, input:focus {
+  outline: none;
+}
+
+h2 {
+  margin: 0 0 10px 0;
+}
+
+h3, h4 {
+  margin: 0;
+}
+
+.search-div {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#search-bar {
+  display: flex;
+  min-height: 86px;
+  padding-left: 15px;
+  border: 1px solid rgb(200, 200, 200);
+}
+
+.search-box {
+  width: 300px;
+  height: 20px;
+}
+
+.application {
+  display: flex;
+  flex-direction: column;
 }
 
 .overallContainer {
-  display:flex;
-  flex-direction:row-reverse;
+  display: flex;
+  flex-direction: row-reverse;
   justify-content: space-between;
 }
 
 .mapContainer {
-  flex:4;
-	position: relative;
+  flex: 4;
+  position: relative;
 }
 
-.header {
-  flex:1;
+.sidebar {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #f8f8f8;
 }
 
-.application{
-	display:flex;
-	flex-direction:column;
+.sign-in-register-btn {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.login {
+  overflow-y: auto;
+}
+
+.savedjobs {
+  overflow-y: auto;
+}
+
+.sidebar>div {
+  padding: 10px;
+}
+
+.savedjobs {
+  font-size: 80%;
+  padding: 0 10px 0 10px;
 }

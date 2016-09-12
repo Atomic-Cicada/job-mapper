@@ -61,12 +61,7 @@ export default class UserHome extends Component {
       headers: myHeaders,
       body: JSON.stringify({ job: job, username: this.props.username}),
     };
-    fetch('/addJob', options).
-    then((response) => {
-      return response.json().then((data) => {
-        console.log(data);
-      });
-    })
+    fetch('/addJob', options)
     .catch((error) => {
       console.log('There has been a problem with your fetch operation: ' + error.message);
     });
@@ -83,12 +78,7 @@ export default class UserHome extends Component {
       headers: myHeaders,
       body: JSON.stringify({jobkey: jobkey, username: this.props.username})
     };
-    fetch('/removeJob', options).
-    then((response) => {
-      return response.json().then((data) => {
-        console.log(data);
-      });
-    })
+    fetch('/removeJob', options)
     .catch((error) => {
       console.log('There has been a problem with your fetch operation: ' + error.message);
     });
@@ -110,14 +100,18 @@ export default class UserHome extends Component {
             removeJob={this.removeJob} />
         ));
     return (
-      <div className='header'>
-        <a onClick={this.props.LogOutUser.bind(this)} href='#'>Logout</a>
-        <hr></hr>
-        Saved Jobs
-        <hr></hr>
-        <a onClick={this.addJob.bind(this)} href='#'>Add Job to List</a>;
-        <hr></hr>
-        {Jobs}
+      <div className='sidebar'>
+        <div className='sidebarheaders'>
+          <a onClick={this.props.LogOutUser.bind(this)} href='#'>Logout</a>
+          <hr></hr>
+          Saved Jobs
+          <hr></hr>
+          <a onClick={this.addJob.bind(this)} href='#'>Add Job to List</a>
+          <hr></hr>
+        </div>
+        <div className='savedjobs'>
+          {Jobs}
+        </div>
       </div>
     );
   }
