@@ -21,11 +21,13 @@ module.exports = (app, express) => {
     userdbController.getJobs(req, res);
   });
 
-  app.post('/addJob', (req, res) => {
+  // Add one job to the user's list of saved jobs
+  app.post('/addJob', function(req, res) {
     userdbController.addJob(req, res);
   });
 
-  app.post('/removeJob', (req, res) => {
+  // Removes one job from the user's list of saved jobs
+  app.post('/removeJob', function(req, res) {
     userdbController.removeJob(req, res);
   });
 
