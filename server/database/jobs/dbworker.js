@@ -8,7 +8,8 @@ const mongoose = require('mongoose');
 const whilst = require('async/whilst');
 const each = require('async/each');
 
-const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost/jobmapper';
+// const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost/jobmapper';
+const mongoUri = 'mongodb://localhost/jobmapper';
 const db = mongoose.connect(mongoUri);
 
 // Query variables

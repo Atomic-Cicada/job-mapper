@@ -10,6 +10,7 @@ export default class Register extends Component {
       currentConfirmation: '',
       message: ''
     };
+    // The message property is updated as a user is registering, depending on the status (whether their passwords add up, if username is taken, etc)
 
     this.rejectUserTakenUsername = this.rejectUserTakenUsername.bind(this);
     this.rejectUserBadPassword = this.rejectUserBadPassword.bind(this);
