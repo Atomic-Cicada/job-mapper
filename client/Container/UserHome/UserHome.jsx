@@ -117,9 +117,9 @@ export default class UserHome extends Component {
         <div className='sidebarheaders'>
           <a onClick={this.props.LogOutUser.bind(this)} href='#'>Logout</a>
           <hr></hr>
-          Saved Jobs
+            <a onClick={this.addJob.bind(this)} href='#'>Save Selected Job</a>
           <hr></hr>
-          <a onClick={this.addJob.bind(this)} href='#'>Add Job to List</a>
+          <h2>Saved Jobs</h2>
           <hr></hr>
         </div>
         <div className='savedjobs'>

@@ -48,15 +48,15 @@ export default class Register extends Component {
   }
 
   rejectUserTakenUsername() {
-    this.setState({message: 'Sorry that username is already taken'});
+    this.setState({message: 'Sorry, that username is already taken.'});
   }
 
   rejectUserBadPassword() {
-    this.setState({message: 'Sorry your passwords do not add up'});
+    this.setState({message: 'Passwords do not match or are not 7 characters in length.'});
   }
 
   handleSuccess() {
-    this.setState({message: 'Sucess! You have signed up'});
+    this.setState({message: 'Sucess! You are signed up!'});
   }
 
   passwordTest() {
