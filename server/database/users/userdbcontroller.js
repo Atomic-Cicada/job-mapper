@@ -88,6 +88,18 @@ module.exports = {
       function(err, model) {
         if (err) { console.log(err); }
       });
+  },
+
+  removeJob: (req, res) => {
+    let jobkey = req.body.jobkey;
+    let username = req.body.username;
+    let foundIndex;
+    User.findOneAndUpdate(
+      { username: username }, 
+      { $pull: {savedJobs: {jobkey: jobkey} } },
+      function(err, model) {
+        if (err) { console.log(err); }
+      });
   }
 
 };

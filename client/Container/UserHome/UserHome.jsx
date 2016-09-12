@@ -32,7 +32,8 @@ export default class UserHome extends Component {
             company: item.company,
             jobtitle: item.jobtitle,
             snippet: item.snippet,
-            url: item.url
+            url: item.url,
+            jobkey: item.jobkey
           };
           jobs.push(job);
         });
@@ -49,7 +50,8 @@ export default class UserHome extends Component {
       company: this.props.selected.company,
       jobtitle: this.props.selected.jobtitle,
       snippet: this.props.selected.snippet,
-      url: this.props.selected.url
+      url: this.props.selected.url,
+      jobkey: this.props.selected.jobkey
     };
     let myHeaders = new Headers({
       'Content-Type': 'application/json; charset=utf-8'
@@ -71,24 +73,26 @@ export default class UserHome extends Component {
     this.getJobs();
   }
 
-  removeJob() {
-    console.log('remove job');
-    // let myHeaders = new Headers({
-    //   'Content-Type': 'application/json; charset=utf-8'
-    // });
-    // let options = {
-    //   method: 'POST',
-    //   headers: myHeaders,
-    // };
-    // fetch('/removeJob', options).
-    // then((response) => {
-    //   return response.json().then((data) => {
-    //     console.log(data);
-    //   });
-    // })
-    // .catch((error) => {
-    //   console.log('There has been a problem with your fetch operation: ' + error.message);
-    // });
+  removeJob(jobkey) {
+    event.preventDefault();
+    let myHeaders = new Headers({
+      'Content-Type': 'application/json; charset=utf-8'
+    });
+    let options = {
+      method: 'POST',
+      headers: myHeaders,
+      body: JSON.stringify({jobkey: jobkey, username: this.props.username})
+    };
+    fetch('/removeJob', options).
+    then((response) => {
+      return response.json().then((data) => {
+        console.log(data);
+      });
+    })
+    .catch((error) => {
+      console.log('There has been a problem with your fetch operation: ' + error.message);
+    });
+    this.getJobs();
   }
 
 
@@ -102,6 +106,7 @@ export default class UserHome extends Component {
             jobtitle={job.jobtitle}
             snippet={job.snippet}
             url={job.url}
+            jobkey={job.jobkey}
             removeJob={this.removeJob} />
         ));
     return (

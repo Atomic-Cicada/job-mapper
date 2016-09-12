@@ -36,11 +36,11 @@ export default class SearchBar extends Component {
             company: job.company,
             jobtitle: job.jobtitle,
             snippet: job.snippet,
-            url: job.url
+            url: job.url,
+            jobkey: job.jobkey
           };
           markers.push(marker);
         });
-        console.log(markers.length);
         this.props.setMarkers(markers);
       });
 
