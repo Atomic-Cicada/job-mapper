@@ -80,7 +80,7 @@ module.exports = {
     });
   },
 
-  // look up username and adds a job to saved jobs array
+  // This adds a job to 'saved jobs' sidebar that user sees on homepage
   addJob: (req, res) => {
     let username = req.body.username;
     let job = req.body.job;
@@ -93,7 +93,7 @@ module.exports = {
       });
   },
 
-  // look up username and removes job from saved jobs array
+  // This removes a job from the 'saved jobs' sidebar
   removeJob: (req, res) => {
     let jobkey = req.body.jobkey;
     let username = req.body.username;
