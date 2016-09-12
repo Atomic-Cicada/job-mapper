@@ -12,7 +12,7 @@ export default class SavedJob extends Component {
       <div>{this.props.jobtitle}</div>
       <div>{this.props.snippet}</div>
       <div><a href={this.props.url}>Link</a></div>
-      <div><a onClick={this.props.removeJob.bind(this)} href='#'>Remove job</a></div>
+      <div><a onClick={()=>this.props.removeJob(this.props.jobkey)} href='#'>Remove job</a></div>
       <hr></hr>
       </div>
     );

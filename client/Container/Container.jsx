@@ -79,6 +79,7 @@ export class Container extends React.Component {
             jobtitle={marker['jobtitle']}
             snippet={marker['snippet']}
             url={marker['url']}
+            jobkey={marker['jobkey']}
             position={{lat: marker['lat'], lng: marker['lng']}} />
         ));
 

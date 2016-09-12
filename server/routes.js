@@ -26,7 +26,7 @@ module.exports = (app, express) => {
   });
 
   app.post('/removeJob', function(req, res) {
-    // remove job
+    userdbController.removeJob(req, res);
   });
 
   app.get('/logout', function(req, res) {
