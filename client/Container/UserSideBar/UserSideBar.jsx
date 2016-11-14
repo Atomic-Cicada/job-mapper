@@ -25,6 +25,8 @@ export default class UserSideBar extends React.Component {
     let signIntext;
 
     // register and signin toggle
+    // by default the sign in will appear
+    // if this.state.register is set to true, then the
     if (this.state.register) {
       signInHeader = <h2>Register:</h2>;
       signInButton = <Register/>;
